@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <title>Blank Page - Cirrus</title>
+    {% block meta %}
+    <meta name="description" content="Cirrus Flask">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock meta %}
+    {% block stylesheets %}
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% endblock stylesheets %}
+   {% endblock head %}
+  </head>
+
+<body style="overflow-x: hidden;">
+
+
+<main>
+
+<!-- Headings-->
+
+
+<div class="col-lg-5">
+				            <h4 class="mb-3 line-head" id="buttons">Event Log</h4>
+				            <div class="bs-component" style="margin-bottom: 15px;">
+				              <div class="messanger">
+							    <div class="messages" style="overflow:auto; display:flex; flex-direction:column-reverse;max-height: 325px;">
+							      <div id="log"></div>
+							    </div>
+    		        		  </div>
+				            </div>
+
+
+				          </div>
+
+
+
+
+
+
+
+</main>
+
+<script type="text/javascript" charset="utf-8">
+		        $(document).ready(function() {
+		            // Use a "/test" namespace.
+		            // An application can open a connection on multiple namespaces, and
+		            // Socket.IO will multiplex all those connections on a single
+		            // physical channel. If you don't care about multiple channels, you
+		            // can set the namespace to an empty string.
+		            namespace = '/test';
+
+		            // Connect to the Socket.IO server.
+		            // The connection URL has the following format, relative to the current page:
+		            //     http[s]://<domain>:<port>[/<namespace>]
+		            var socket = io(namespace);
+
+		            // Event handler for new connections.
+		            // The callback function is invoked when a connection with the
+		            // server is established.
+		            socket.on('connect', function() {
+
+		            });
+
+		            // Event handler for server sent data.
+		            // The callback function is invoked whenever the server emits data
+		            // to the client. The data is then displayed in the "Received"
+		            // section of the page.
+		            socket.on('my_response', function(msg,cb) {
+		                $('#log').append('<br>' + $('<div/>').html('[Cirrus ' + msg.timestamp + ']  ' + msg.data + '<b><u><font color="#204a87">' + msg.data2 + '</font></u></b>' + msg.data3).html());
+		                if (cb)
+		                    cb();
+		            });
+
+		            // Interval function that tests message latency by sending a "ping"
+		            // message. The server then responds with a "pong" message and the
+		            // round trip time is measured.
+		            var ping_pong_times = [];
+		            var start_time;
+		            window.setInterval(function() {
+		                start_time = (new Date).getTime();
+		                socket.emit('my_ping');
+		            }, 1000);
+
+		            // Handler for the "pong" message. When the pong is received, the
+		            // time from the ping is stored, and the average of the last 30
+		            // samples is average and displayed.
+		            socket.on('my_pong', function() {
+		                var latency = (new Date).getTime() - start_time;
+		                ping_pong_times.push(latency);
+		                ping_pong_times = ping_pong_times.slice(-30); // keep last 30 samples
+		                var sum = 0;
+		                for (var i = 0; i < ping_pong_times.length; i++)
+		                    sum += ping_pong_times[i];
+		                $('#ping-pong').text(Math.round(10 * sum / ping_pong_times.length) / 10);
+		            });
+
+		            // Handlers for the different forms in the page.
+		            // These accept data from the user and send it to the server in a
+		            // variety of ways
+		            $('form#emit').submit(function(event) {
+		                socket.emit('my_event', {data: $('#emit_data').val()});
+		                $("#emit_data").val("");
+		                return false;
+		            });
+		            $('form#broadcast').submit(function(event) {
+		                socket.emit('my_broadcast_event', {data: $('#broadcast_data').val()});
+		                return false;
+		            });
+		            $('form#join').submit(function(event) {
+		                socket.emit('join', {room: $('#join_room').val()});
+		                return false;
+		            });
+		            $('form#leave').submit(function(event) {
+		                socket.emit('leave', {room: $('#leave_room').val()});
+		                return false;
+		            });
+		            $('form#send_room').submit(function(event) {
+		                socket.emit('my_room_event', {room: $('#room_name').val(), data: $('#room_data').val()});
+		                return false;
+		            });
+		            $('form#close').submit(function(event) {
+		                socket.emit('close_room', {room: $('#close_room').val()});
+		                return false;
+		            });
+		            $('form#disconnect').submit(function(event) {
+		                socket.emit('disconnect_request');
+		                return false;
+		            });
+		        });
+    </script>
+
+
+<script type="text/javascript" src="static/js/plugins/dropzone.js"></script>
+
+
+
+
+</body>
+</html>

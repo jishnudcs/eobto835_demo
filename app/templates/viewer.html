@@ -1,0 +1,638 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+
+<main id="dmsapp" class="app-content">
+    <!-- Modal -->
+	<div class="modal hide" id="open_batch_tree_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	   <div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			 <div class="modal-header">
+				<h5 class="modal-title" id="myModalLabel">File Load</h5>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			 </div>
+			 <div class="modal-body">
+			    <div class="bs-component">
+				   Select a dictionary to populate the tree:<br><br>
+				   <ul class="nav nav-tabs">
+                     <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#batchpanel">Batch Dictionary</a></li>
+                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#sortpanel">Sort Dictionary</a></li>
+                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#uploadpanel">Upload File</a></li>
+                   </ul>
+				   <div class="tab-content" id="myTabContent">
+                      <div class="tab-pane fade active show" id="batchpanel">
+                         <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                      </div>
+                      <div class="tab-pane fade" id="sortpanel">
+                         <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+                      </div>
+                      <div class="tab-pane fade" id="uploadpanel">
+                         <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+                      </div>
+                   </div>
+                </div>
+			 </div>
+			 <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Load File</button>
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="tile mb-4" style="background: #225DAB;min-height: 1200px;">
+       	<!-- Modal -->
+        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+           <div class="modal-dialog modal-dialog-slideout" role="document">
+              <div class="modal-content">
+                 <div class="modal-header">
+				    <h5 class="modal-title" id="exampleModalLabel">Modal sideout small</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                      </button>
+                 </div>
+                 <div id="" class="modal-body">
+                  ...
+                 </div>
+                 <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                 </div>
+             </div>
+           </div>
+        </div>
+	   <!-- <div class="row">
+          <div class="col-lg-12">
+             <div class="page-header">
+                <h3 class="mb-3 line-head" id="typography" style="height: 50px;color:#fff;padding: 10px;text-shadow: 2px 1px 1px #000;">RTI Tree Viewer</h3>
+				<div class="bs-component" style="-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);border: 1px solid #4896C9;padding: 5px;height: 45px;width: 100%;border-radius: 10px;background-color: rgba( 255,255, 255, 0.1); /* transparent white */">
+              <ul class="nav nav-pills">
+                <li class="nav-item dropdown"><a class="btn-sm nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">File Functions</a>
+                  <div class="dropdown-menu"><a class="dropdown-item" href="#">Upload Dictionary</a><a class="dropdown-item" href="#">Select Dictionary</a><a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#">Separated link</a>
+                  </div>
+                </li>&nbsp;&nbsp;&nbsp;
+								
+                <li><a href="#search_container" class="btn-sm nav-link btn-primary" data-toggle="collapse">Search Options</a></li>
+              </ul>
+            </div>
+			<div id="search_container" class="row collapse">
+			 <div style="float:left;margin-left: 85px;margin-top: 20px;padding: 10px;border-radius: 10px;width: 450px;margin-right: 10px;-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);border: 1px solid #4896C9;font-size: 17px;color: #fff;font-family: Arial, Helvetica, sans-serif;background-color: rgba( 255,255, 255, 0.1); /* transparent white */">
+			 <a href="#" class="btn-sm btn-primary" data-toggle="collapse">Search Batches</a>&nbsp;&nbsp;&nbsp;<a href="#" id="batch_query_clear" class="btn-sm btn-warning">Clear</a>&nbsp;&nbsp;&nbsp;<input id="batch_query" class="search-input" />&nbsp;&nbsp;&nbsp;
+             </div>
+			 <div style="float: left;margin-top: 20px;padding: 10px;border-radius: 10px;width: 450px;margin-right: 10px;-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);border: 1px solid #4896C9;font-size: 17px;color: #fff;font-family: Arial, Helvetica, sans-serif;background-color: rgba( 255,255, 255, 0.1); /* transparent white */">
+			 <a href="#" class="btn-sm btn-primary" data-toggle="collapse">Search Envelopes</a>&nbsp;&nbsp;&nbsp;<a href="#" id="env_query_clear" class="btn-sm btn-warning">Clear</a>&nbsp;&nbsp;&nbsp;<input id="env_query" class="search-input" />&nbsp;&nbsp;&nbsp;
+             </div>
+			 <div style="float: left;margin-top: 20px;padding: 10px;border-radius: 10px;width: 450px;-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);border: 1px solid #4896C9;font-size: 17px;color: #fff;font-family: Arial, Helvetica, sans-serif;background-color: rgba( 255,255, 255, 0.1); /* transparent white */">
+			 <a href="#" class="btn-sm btn-primary" data-toggle="collapse">Search Images</a>&nbsp;&nbsp;&nbsp;<a href="#" id="img_query_clear" class="btn-sm btn-warning">Clear</a>&nbsp;&nbsp;&nbsp;<input id="img_query" class="search-input" />&nbsp;&nbsp;&nbsp;
+             </div>
+             </div>
+			</div>
+          </div>
+       </div> -->
+	   <h3 class="mb-3 line-head" id="typography" style="height: 50px;color:#fff;padding: 10px;text-shadow: 2px 1px 1px #000;">RTI Tree Viewer</h3>
+       <div class="row">
+	      
+          <div class="col-lg-3">
+		  <h5 style="margin-top: 10px;color:#fff; border-bottom: 1px solid #fff;text-shadow: 2px 1px 1px #000;">File Tree Explorer</h5>
+		  <input id="batch_query" class="search-input" style="width: 85%;" />&nbsp;&nbsp;&nbsp;<a href="#" id="batch_query_clear" class="btn-sm btn-warning">Clear</a>
+		    <div style="margin-top: 10px;margin-bottom: 10px;">
+               <a href="#" class="btn-sm btn-info" id="open_tree" data-toggle="modal" data-target="#open_batch_tree_modal">Load Tree</a>&nbsp;&nbsp;&nbsp;<a href="#" class="btn-sm btn-info" id="close_batch_tree">Close All</a>&nbsp;&nbsp;&nbsp;<a href="#search_container" class="btn-sm btn-info" id="refresh_batch_tree" data-toggle="collapse">Advanced Search</a>
+                <div id="search_container" class="row collapse">
+				   <div style="float:left;width:100%;margin-left: 15px;margin-top: 20px;padding: 10px;border-radius: 10px;margin-right: 15px;-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);border: 1px solid #4896C9;font-size: 17px;color: #fff;font-family: Arial, Helvetica, sans-serif;background-color: rgba( 255,255, 255, 0.1); /* transparent white */">
+					  <h6 style="margin-top: 10px;color:#fff; border-bottom: 1px solid #fff;text-shadow: 2px 1px 1px #000;">Batch Search</h6>
+					  <input id="batch_query" class="search-input" />&nbsp;&nbsp;&nbsp;<a href="#" id="batch_query_clear" class="btn-sm btn-warning">Clear</a>&nbsp;&nbsp;&nbsp;
+                      <h6 style="margin-top: 10px;color:#fff; border-bottom: 1px solid #fff;text-shadow: 2px 1px 1px #000;">Envelope Search</h6>
+					  <input id="env_query" class="search-input" />&nbsp;&nbsp;&nbsp;<a href="#" id="env_query_clear" class="btn-sm btn-warning">Clear</a>&nbsp;&nbsp;&nbsp;
+                      <h6 style="margin-top: 10px;color:#fff; border-bottom: 1px solid #fff;text-shadow: 2px 1px 1px #000;">Image Search</h6>
+					  <input id="img_query" class="search-input" />&nbsp;&nbsp;&nbsp;<a href="#" id="img_query_clear" class="btn-sm btn-warning">Clear</a>&nbsp;&nbsp;&nbsp;
+               	   </div>
+			    </div>
+			</div>
+				<div class="messages" style="-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);border: 1px solid #4896C9;padding: 5px; overflow:auto;min-height: 750;max-height: 750px;font-size: 17px;color: #fff;margin-top: 5px;font-family: Arial, Helvetica, sans-serif;background-color: rgba( 255,255, 255, 0.1); /* transparent white */">
+				   <div id="batch_tree">
+					  {% for batch, envelope in bd_dict.items() %}
+					  <ul>
+					     <li name="batch_level" data-jstree='{ "opened" : false, "type":"batch", "icon" : "fa fa-folder" }'>{{batch}}
+  					 	   {% for envelope, imgname in envelope.items() %}				    
+							<ul>
+							   <li name="env_level" data-jstree='{ "opened" : false, "type":"envelope", "icon" :"fa fa-envelope" }'>{{envelope}}   
+								 <ul>
+								    {% for imgname in imgname %}
+                                     <li id="{{imgname}}" name="image_level"  data-jstree='{ "opened" : true, "icon" : "fa fa-picture-o", "type":"image"  }'><a href="/static/images/{{batch}}/{{imgname}}.png">{{ imgname }}</a></li>
+                                    {% endfor %}
+                                 </ul>
+                               </li>
+							</ul>				          
+							{% endfor %}
+                         </li>
+					  </ul>
+                      {% endfor %}
+									 </div>
+			          </div>
+             
+          
+       </div>
+	   <div class="col-lg-9">
+       <div id="canvas_title"><h5 style="margin-top: 10px;color:#fff; border-bottom: 1px solid #fff;text-shadow: 2px 1px 1px #000;">Welcome to RTI Dictionary Viewer</h5></div>
+			<div class="col-lg-12">
+			<div id="batch_info"></div>
+            
+            <div id="gallery_info"></div>
+		  </div>
+	         <div id="viewer_canvas" style="margin-top: 5px;border-radius: 10px;-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);border: 1px solid #4896C9;padding: 10px;height: auto;background-color: rgba( 255,255, 255, 0.1); /* transparent white */">
+				<div id="welcome_container"></div>
+				
+				<div id="batch_viewer_container"></div>
+				<div id="gallery_viewer_container"></div>
+        	    
+                
+				<div class="row">
+          <div class="col-lg-6">
+            
+            <div id="image_viewer_container" class="bs-component">
+              
+            </div>
+          </div>
+          <div class="col-lg-6">
+            
+            <div id="image_info" class="bs-component" style="font-size: 16px;color: #fff;margin-bottom: 3em;">
+              </div>
+            
+          </div>
+        </div>
+				
+				
+				
+				
+				
+				
+             </div>
+		  </div>
+       
+	   </div>
+</main>
+
+
+
+
+
+<!-- Essential javascripts for application to work-->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+
+
+
+   
+    
+
+	
+	
+	<script type="text/javascript">
+
+	$(function () {
+
+          
+  $("#batch_tree").jstree({
+        "plugins" : [ "wholerow","search", "types", 'theme'],
+
+        "search": {
+        show_only_matches: true,
+        search_callback: function (searchString, node) {
+            if (node.parent != "#" && node.text.toUpperCase().includes(searchString.toUpperCase()) == true) {
+                return node;
+            }
+        }
+    },    
+
+        "types" : {
+        "batch" : {
+            
+        },
+        "envelope" : {
+            
+        },
+        "image" : {
+
+            
+        }
+    }
+      })
+  
+  //$('#batch_tree').on('activate_node.jstree', function(e, data) {
+  //if(data.instance.is_parent(data.node)) {
+  //  alert("Leaf: " + data.node.text);
+  //  alert("Parent: " +  data.instance.get_node(data.node.parent).text);
+  //}
+  //});
+//     $("#batch_tree").on("select_node.jstree",
+//     function(evt, data){
+//          alert(data.node.text);
+//     }
+// );
+  $('jstree_selector').bind('set_focus.jstree', function () {
+    alert('focus');
+}).bind('unset_focus.jstree', function () {
+    alert('blur');
+});
+
+  $("#batch_tree").on("select_node.jstree", function (e, data) {
+     $.jstree.defaults.search.show_only_matches = true;
+     data.instance.toggle_node(data.node);
+
+     var href = data.node.a_attr.href;
+     var img = document.createElement("img");
+	 var batch_container = document.getElementById("batch_viewer_container");
+     var src = document.getElementById("image_viewer_container");
+     var gallery = document.getElementById("gallery_viewer_container");
+     var batchinfo = document.getElementById("batch_info");
+	 var galleryinfo = document.getElementById("gallery_info");
+	 var imginfo = document.getElementById("image_info");	 
+	 var title = document.getElementById("canvas_title");
+     var oElement = $("#" + data.node.id)[0];
+     var type = oElement.attributes["name"].value;
+     var index = href.lastIndexOf("/") + 1;
+     var img_name = href.substr(index);
+     
+     var batch_name = img_name.slice(0, 11);
+     var batch_year = img_name.slice(0, 2);
+     var batch_jd = img_name.slice(2, 5);
+     var batch_job = img_name.slice(5, 7);
+     var batch_office = img_name.slice(7, 8);
+     var batch_seq = img_name.slice(8, 11);
+     var batch_img_seq = img_name.slice(11, 15);
+     var batch_img_type = img_name.slice(16);
+     var batch_parent = data.instance.get_node(data.node.parent).text;
+	 var batch_envelope = data.instance.get_node(data.selected[0]).children;
+     var envelope_children = data.instance.get_node(data.selected[0]).children;
+     var nodename = data.instance.get_node(data.selected[0]).text;
+	 var currentNode = $("#batch_tree").jstree("get_selected");
+	 var childrens = $("#batch_tree").jstree("get_children_dom",currentNode);
+     img.src = href;
+	 
+     
+
+
+     
+     switch (type)
+          {
+            case "batch_level":
+                
+                 batchinfo.innerHTML = '';
+				 imginfo.innerHTML = '';
+                 galleryinfo.innerHTML = '';
+				 gallery.innerHTML = '';
+				 batch_container.innerHTML = '';
+				 src.innerHTML = '';
+				 title.innerHTML = '';
+				 
+                
+                 
+                 var div = document.createElement('div');
+                 div.setAttribute('id', 'envelope_images');
+                 div.setAttribute('class', 'row');
+				 div.setAttribute('style', 'margin-left: 50px;');
+
+                 
+				 
+				 
+                 for (var i=0; i<childrens.length; i++) {
+                    var div2 = document.createElement('div');
+                    
+                    div2.setAttribute('class', 'column'); 
+                    var imgcount = childrens.length;
+                    
+                    div2.innerHTML = '<img style="border:0px solid #204a87;padding: 0px; margin:10px;width:25%;" src="static/images/foldericon.png">&nbsp;&nbsp;&nbsp;'+'<br>Envelope #: '+childrens[i].innerText.substring(0, 6)+'<br>'+'  Count:   '+imgcount+'<br>';
+                    
+                    div.appendChild(div2);     
+                 }
+
+                 batch_container.appendChild(div);
+
+             
+                
+                title.innerHTML = '<h5 style="background: #204a87;margin-top: 10px;color:#fff;text-shadow: 2px 1px 1px #000; border-bottom: 1px solid #fff"> Batch Detail - ' + 'Batch: ' + nodename + 'Envelope Count: ' + imgcount +'</h5>';
+                              
+
+                break;
+            case "env_level":
+                 
+                 batchinfo.innerHTML = '';
+				 imginfo.innerHTML = '';
+                 galleryinfo.innerHTML = '';
+				 gallery.innerHTML = '';
+				 batch_container.innerHTML = '';
+				 src.innerHTML = '';
+				 title.innerHTML = '';
+				 
+                
+                 
+                 var div = document.createElement('div');
+                 div.setAttribute('id', 'envelope_images');
+                 div.setAttribute('class', 'row');
+
+                 
+
+                 for (var i=0; i<envelope_children.length; i++) {
+                    var div2 = document.createElement('div');
+                    
+                    div2.setAttribute('class', 'column'); 
+                    var imgcount = envelope_children.length;
+                    
+                    div2.innerHTML = '<img style="border:5px solid #204a87; margin:10px;width:75%;" src="static/images/'+envelope_children[i].substring(0,11)+'/'+envelope_children[i]+'.png">&nbsp;&nbsp;&nbsp;'+envelope_children[i]+'<br>';
+                    
+                    div.appendChild(div2);     // append li to ul.
+                 }
+
+                 gallery.appendChild(div);
+
+                //ul.setAttribute('style', 'display: none;');
+                
+                title.innerHTML = '<h5 style="background: #204a87;margin-top: 10px;color:#fff;text-shadow: 2px 1px 1px #000; border-bottom: 1px solid #fff"> Envelope Detail - '+ 'Batch:' + batch_parent + 'Envelope: ' + nodename + 'Envelope Count: ' + imgcount +'</h5>';
+              
+
+                //document.getElementById('outer-container').onclick = function(e) {
+                 //   if(e.target != document.getElementById('content-area')) {
+                   //     alert('You clicked outside');
+                   // } else {
+                    //   alert('You clicked inside');
+                   // }
+               // }
+
+                //gallery.show();
+               //     var html='';
+                // for (var i=1; i<batch_children.length; i++) {
+                 //   html+= '<img src="static/images/'+batch_parent+'/'+batch_children[i]+'.png">';
+                // }
+                //document.getElementById('image_info').innerHTML= html;
+                 
+               
+                 
+
+                break;
+            case "image_level":
+                batchinfo.innerHTML = '';
+				imginfo.innerHTML = '';
+                galleryinfo.innerHTML = '';
+				gallery.innerHTML = '';
+				batch_container.innerHTML = '';
+				src.innerHTML = '<h5 style="margin-top: 10px;color:#fff;text-shadow: 2px 1px 1px #000; border-bottom: 1px solid #fff">Image Preview&nbsp;&nbsp;&nbsp;<small>(Click the image to launch viewer)</small></h5>';
+				title.innerHTML = '';
+                src.appendChild(img);
+                img.setAttribute('alt', 'img_name');
+                img.setAttribute('style','border:25px solid #204a87;width:100%;height: auto;');
+                //alert(batch_parent);
+
+                //const viewer = new Viewer(document.getElementById("image_viewer_container"), {
+                //    inline: true,
+                    
+                //    }); 
+                
+                // image.click();
+                //viewer.show();
+                var img_width = img.naturalWidth;
+                var img_height = img.naturalHeight;
+                
+                      
+                imginfo.innerHTML += '<h5 style="margin-top: 10px;color:#fff;text-shadow: 2px 1px 1px #000; border-bottom: 1px solid #fff">Image Information</h5><table><tbody><tr><td><b>Image Name:</b></td><td>'+img_name+'</td></tr><tr><td><b>Image Path:</b></td><td>'+href+'</td></tr><tr><td><b>Image Type:</b></td><td>'+batch_img_type+'</td></tr><tr><td><b>Image Height:</b></td><td>'+img_height+'</td></tr><tr><td><b>Image Width:</b></td><td>'+img_width+'</td></tr><tr><td><b>Image Sequence:</b></td><td>'+batch_img_seq+'</td></tr><tr><td><h5 style="margin-top: 10px;color:#fff;text-shadow: 2px 1px 1px #000; border-bottom: 1px solid #fff">Batch Information</h5></td></tr><tr><td><b>Batch Name:</b></td><td>'+batch_name+'</td></tr><tr><td><b>Batch Year:</b></td><td>'+batch_year+'</td></tr><tr><td><b>Julian Date:</b></td><td>'+batch_jd+'</td></tr><tr><td><b>Job Type:</b></td><td>'+batch_job+'</td></tr><tr><td><b>Batch Location:</b></td><td>'+batch_office+'</td></tr><tr><td><b>Batch Sequence:</b></td><td>'+batch_seq+'</td></tr></tbody></table>';
+              
+				title.innerHTML = '<h5 style="margin-top: 10px;color:#fff;text-shadow: 2px 1px 1px #000; border-bottom: 1px solid #fff">Image Detail for '+img_name+'</h5><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal1">Launch demo modal sideout small</button>';
+                
+
+               
+                break;
+
+            
+          }
+    
+
+     //var level = $('#batch_tree').jstree().get_selected(true)[0].txt;
+     //alert(level);
+
+    
+
+  });
+
+
+    var to = false;
+  $('#batch_query').keyup(function () {
+      if(to) { clearTimeout(to); }
+      to = setTimeout(function () {
+      var v = $('#batch_query').val();
+      $('#batch_tree').jstree(true).search(v);
+    }, 250);
+  });
+
+
+    var to = false;
+  $('#env_query').keyup(function () {
+      if(to) { clearTimeout(to); }
+      to = setTimeout(function () {
+      var v = $('#env_query').val();
+      $('#batch_tree').jstree(true).search(v);
+    }, 250);
+  });
+
+
+  var to = false;
+  $('#img_query').keyup(function () {
+      if(to) { clearTimeout(to); }
+      to = setTimeout(function () {
+      var v = $('#img_query').val();
+      $('#batch_tree').jstree(true).search(v);
+    }, 250);
+  });
+
+
+  $("#batch_query_clear").click(function () {
+    $("#batch_tree").jstree("clear_search");
+    document.getElementById('batch_query').value = '';
+  });
+
+  $("#env_query_clear").click(function () {
+    $("#batch_tree").jstree("clear_search");
+    document.getElementById('env_query').value = '';
+  });
+
+  $("#img_query_clear").click(function () {
+    $("#batch_tree").jstree("clear_search");
+    document.getElementById('img_query').value = '';
+  });
+  
+  $("#open_batch_tree").click(function () {
+    $("#batch_tree").jstree("open_all");
+  });
+
+  $("#close_batch_tree").click(function () {
+    $("#batch_tree").jstree("close_all");
+  });
+  //$('#batch_tree').on("select_node.jstree", function (e, data) { alert("node_id: " + data.node.id); });
+
+
+
+
+});
+	
+
+	
+
+	
+
+	</script>
+
+  <script>
+
+ //   $(document).ready(function () {
+ //  $(document).on({
+ //       mouseenter: function () {
+ //           if(e.keyCode === 13){
+ //           e.preventDefault(); // Ensure it is only this code that runs
+
+            //alert("Enter was pressed was presses");
+ //       }
+ //       }
+        
+ //   }, '.jstree-node');
+//   });
+
+     window.addEventListener('load', function () {
+                document.getElementById('image_viewer_container').addEventListener('click', function () {
+                
+                var viewer = new Viewer(document.getElementById("viewer_canvas"), {
+                    inline: true, 
+                    hidden: function () {
+                       viewer.destroy();
+                    },
+					
+                    title: function (image) {
+                       
+                        return 'Image Viewer Mode - ' + 'Image: ' + image.alt + ' (' + (this.index + 1) + '/' + this.length + ')';
+                    },
+                    toolbar: {
+                        zoomIn: 1,
+                        zoomOut: 1,
+                        oneToOne: 1,
+                        reset: 1,
+                        prev: 1,
+                        play: {
+                          show: 1,
+                          size: 'large',
+                        },
+                        next: 1,
+                        rotateLeft: 1,
+                        rotateRight: 1,
+                        download: function() {
+                               const a = document.createElement('a');
+                               a.setAttribute('target', '_blank');
+                               a.href = viewer.image.src;
+                               a.download = viewer.image.alt;
+                               document.body.appendChild(a);
+                               a.click();
+                               document.body.removeChild(a);
+                        },
+                        close: function() {
+                              viewer.destroy();
+                        },
+
+                    },
+                });
+
+				document.getElementById('batch_tree').onclick = function (event) {
+                    
+                    
+                    viewer.destroy();
+                   
+  
+                  };				}); });
+				
+			
+
+              
+                
+
+            
+     
+  </script>
+
+<script>
+    document.getElementById('gallery_viewer_container').addEventListener('click', function () {
+                
+                var viewer = new Viewer(document.getElementById("gallery_viewer_container"), {
+                    inline: true, 
+                    hidden: function () {
+                       viewer.destroy();
+                    },
+					
+                    title: function (image) {
+                       
+                        return 'Gallery Viewer Mode - ' + 'Image: ' + image.alt + ' (' + (this.index + 1) + '/' + this.length + ')';
+                    },
+                    toolbar: {
+                        zoomIn: 1,
+                        zoomOut: 1,
+                        oneToOne: 1,
+                        reset: 1,
+                        prev: 1,
+                        play: {
+                          show: 1,
+                          size: 'large',
+                        },
+                        next: 1,
+                        rotateLeft: 1,
+                        rotateRight: 1,
+                        download: function() {
+                               const a = document.createElement('a');
+
+                               a.href = viewer.image.src;
+                               a.download = viewer.image.alt;
+                               document.body.appendChild(a);
+                               a.click();
+                               document.body.removeChild(a);
+                        },
+                        close: function() {
+                              viewer.destroy();
+                        },
+
+                    },
+                });
+
+                window.onkeyup = function (event) {
+                    if (event.keyCode == 27) {
+                    
+                    viewer.destroy();
+                    //window.scrollTo(0,0);
+                    }
+  
+                  };
+				  
+				document.getElementById('batch_tree').onclick = function (event) {
+                    
+                    
+                    viewer.destroy();
+                   
+  
+                  };
+
+                // image.click();
+                //viewer.show();
+
+                
+       });
+            
+</script>
+<script>
+	jQuery(document).ready(function(e) {
+    jQuery('#open_batch_tree').trigger('toggle');
+});
+
+
+</script>
+
+
+	
+
+{% endblock content %}
+
+

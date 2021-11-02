@@ -1,0 +1,1160 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+       
+
+<!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="static/images/user.png" alt="User Image">
+        <div>
+          <p class="app-sidebar__user-name">John Doe</p>
+          <p class="app-sidebar__user-designation">Frontend Developer</p>
+        </div>
+      </div>
+	
+	  
+      <ul class="app-menu nav nav-pills">
+        <li class="active"><a class="app-menu__item" data-toggle="tab" href="#eob_835_home"><i class="app-menu__icon fa fa-home"></i><span class="app-menu__label">Home</span></a></li>
+		<li><a class="app-menu__item" data-toggle="tab" href="#eob_835_dashboard"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Analytics</span></a></li>
+		<li><a class="app-menu__item" data-toggle="tab" href="#eob_835_search"><i class="app-menu__icon fa fa-search"></i><span class="app-menu__label">EOB Search</span></a></li>
+		<li><a class="app-menu__item" data-toggle="tab" href="#eob_835_data_correction"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Data Correction</span></a></li>
+		<li><a class="app-menu__item" data-toggle="tab" href="#eob_835_file_viewer"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">835 File Viewer</span></a></li>
+        
+		<!-- <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">UI Elements</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Bootstrap Elements</a></li>
+            <li><a class="treeview-item" href="https://fontawesome.com/v4.7.0/icons/" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> Font Icons</a></li>
+            <li><a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i> Cards</a></li>
+            <li><a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Widgets</a></li>
+          </ul>
+        </li>
+        <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Charts</span></a></li>
+        <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Forms</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="form-components.html"><i class="icon fa fa-circle-o"></i> Form Components</a></li>
+            <li><a class="treeview-item" href="form-custom.html"><i class="icon fa fa-circle-o"></i> Custom Components</a></li>
+            <li><a class="treeview-item active" href="form-samples.html"><i class="icon fa fa-circle-o"></i> Form Samples</a></li>
+            <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-circle-o"></i> Form Notifications</a></li>
+          </ul>
+        </li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Tables</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="table-basic.html"><i class="icon fa fa-circle-o"></i> Basic Tables</a></li>
+            <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> Data Tables</a></li>
+          </ul>
+        </li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Pages</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="blank-page.html"><i class="icon fa fa-circle-o"></i> Blank Page</a></li>
+            <li><a class="treeview-item" href="page-login.html"><i class="icon fa fa-circle-o"></i> Login Page</a></li>
+            <li><a class="treeview-item" href="page-lockscreen.html"><i class="icon fa fa-circle-o"></i> Lockscreen Page</a></li>
+            <li><a class="treeview-item" href="page-user.html"><i class="icon fa fa-circle-o"></i> User Page</a></li>
+            <li><a class="treeview-item" href="page-invoice.html"><i class="icon fa fa-circle-o"></i> Invoice Page</a></li>
+            <li><a class="treeview-item" href="page-calendar.html"><i class="icon fa fa-circle-o"></i> Calendar Page</a></li>
+            <li><a class="treeview-item" href="page-mailbox.html"><i class="icon fa fa-circle-o"></i> Mailbox</a></li>
+            <li><a class="treeview-item" href="page-error.html"><i class="icon fa fa-circle-o"></i> Error Page</a></li>
+          </ul>
+        </li>
+        <li><a class="app-menu__item" href="docs.html"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Docs</span></a></li> -->
+      </ul>
+	  
+    </aside>
+
+<main id="dmsapp" class="app-content content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="app-tile mb-4" style="width: 98%;">
+	
+        <div class="row">
+		<div id="application_menu_container" style="margin-left:0px;height: 35px;width: 100%; background: #fff;border-bottom: 1px solid #ddd;border-bottom-right-radius: 10px;"
+		
+			<nav class="navbar navbar-expand-sm navbar-light">
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto" >
+      <li class="nav-item">
+        <a class="nav-link" style="font-size: 12px;"  href="#"><i class="fa fa-home fa-fw"></i>Application <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" style="font-size: 12px;" href="#"><i class="fa fa-pie-chart fa-fw"></i>Help</a>
+      </li>
+         
+     
+    </ul>
+  </div>
+</nav>
+		
+		 </div> 
+		 
+		 
+		 
+		 
+		 
+          <div class="col-lg-12" >
+            <div class="page-header">
+			
+			
+       
+        
+   
+			
+              
+              		
+          
+									<div class="card-title" style="padding: 5px;margin-top: 10px; border-top-left-radius: 8px; border-top-right-radius: 8px;background:#0078bf; color: #fff;"><i class="fa fa-pie-chart fa-fw"></i> EOB 835 Converter Home			<div class="wc-box" style="margin-top: 10px;">
+  <div class="minimize"></div>
+  <div class="maximize"></div>
+  <div class="close"></div>
+</div>						 </div>
+									
+				<div class="tile" style="background:#dde2e9;border: 1px solid #ddd;" >
+			
+	      
+		    <div class="tab-content" id="AppTabContent">
+		      <div class="tab-pane fade" id="eob_835_dashboard">
+				<div class="tile mb-4" style="border: 1px solid #999;padding: 10px;background-color: #fff;">
+			       
+			dashboard
+				    
+					
+				</div>
+			</div>
+			 <div class="tab-pane fade" id="eob_835_search">
+				<div class="tile mb-4" style="border: 1px solid #999;padding: 10px;background-color: #fff;">
+			       
+				    <div id="display_viz" style="height: 100%; width: 100%;"></div>
+				</div>
+			</div>
+			 <div class="tab-pane fade" id="eob_835_data_correction">
+				<div class="tile mb-4" style="border: 1px solid #999;padding: 10px;background-color: #fff;">
+			       <p>data correction</p>
+				</div>
+			</div>
+			 <div class="tab-pane fade" id="eob_835_file_viewer" >
+							  
+		<div class="row" style="margin-top:-15px;height: 140px;background:linear-gradient(-120deg, #021B79, #0575E6, #205E9B);">
+			
+			    <div class="col-sm-3"><h3 style="padding-left: 30px;padding-top: 35px;color: #f5f5f5;"><i class="fa fa-database" ></i>&nbsp;&nbsp;EDI 835 File Viewer</h3></div>
+					<div class="col-sm-3">&nbsp;</div>
+					<div class="col-sm-6">
+					<div class="row">
+						<div class="bs-component" style="">  
+							   <div class="col-lg-4">
+			<div>
+							Select an 835 file: <br>
+						<input type="file" id="fileInput">
+						</div>
+              
+           </div>
+          </div>
+          <div class="col-lg-8">
+           <pre id="fileDisplayArea"><textarea style="overflow-y: scroll;height: 500px;resize: none; /* Remove this if you want the user to resize the textarea */" class="form-control" rows="4" placeholder="View 835 File Contents Here"></textarea> <pre>
+			
+       
+           
+          </div>
+						
+						
+						</div>
+					</div>
+					
+					
+   
+   
+   
+   
+   
+     
+   
+   
+   
+   
+   
+   
+   
+   
+   
+</div>
+				
+			</div>
+		      <div class="tab-pane fade active show" id="eob_835_home" style="max-height: 800px;" >
+		
+       
+			  
+		<div class="row" style="margin-top:-15px;height: 140px;background:linear-gradient(-120deg, #021B79, #0575E6, #205E9B);">
+  <div class="col-sm-3"><h3 style="padding-left: 30px;padding-top: 35px;color: #f5f5f5;"><i class="fa fa-database" ></i>&nbsp;&nbsp;EOB to EDI 835 Converter</h3><div id="reset_demo" style="margin-left: 85px;"><button id="product-tour-trigger" class="btn btn-primary" type="button">Product Tour</button>&nbsp;&nbsp;&nbsp;<button onClick="window.location.reload();" class="btn btn-warning" type="button">Reset</button></div></div>
+  <div class="col-sm-3">&nbsp;</div>
+  <div class="col-sm-6"><div class="bs-component" style="">
+              
+								
+								
+							  <!-- design process steps--> 
+       
+		
+	   <!-- Nav tabs -->
+        
+		<ul class="process-model" style="">
+          <li id="step_load" class="" ><a href="#" ><i class="fa fa-file-image-o" aria-hidden="true"></i>
+            <p>Step 1<br>Load Images</p>
+            </a></li>
+          <li id="step_sort" class="" ><a href="#" ><i class="fa fa-binoculars" aria-hidden="true"></i>
+            <p>Step 2<br>Identify EOBs</p>
+            </a></li>
+          <li id="step_banding" class="" ><a href="#" ><i class="fa fa-qrcode" aria-hidden="true"></i>
+            <p>Step 3<br>Band EOBs</p>
+            </a></li>
+          <li id="step_ev" class="" ><a href="#" ><i class="fa fa-newspaper-o" aria-hidden="true"></i>
+            <p>Step 4<br>Extract & Validate</p>
+            </a></li>
+          <li id="step_generate" class="" ><a href="#" ><i class="fa fa-clipboard" aria-hidden="true"></i>
+            <p>Step 5<br>Create 835</p>
+            </a></li>
+        </ul>
+	
+        <!-- end design process steps--> 
+        <!-- Tab panes -->
+       
+		
+		
+   </div></div>
+</div>
+
+<!-- Start Main Panel -->
+
+			<div class="row" style="">
+				<div class="col-sm-3" style=""> <!-- Start of Left Column -->
+				
+				 <div class="bs-component" style="margin-top: 15px;" >
+				 <div class="card">
+				 <div class="card-header" >
+									
+									<div class="card-title"><i class="fa fa-info-circle"></i> Welcome!</div>
+			 </div>	
+				<div class="card-body" style="/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#e5e5e5+0,ffffff+100 */
+background: rgb(229,229,229); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(229,229,229,1) 0%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(229,229,229,1) 0%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(229,229,229,1) 0%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+" >	
+                    <legend class="lead" style="background: #CEDEF0;border: 1px solid #bbb;border-radius: 8px;">
+                        <b>Simplify EOB to EDI 835 Conversion with the Ruzivo&#8482; engine</b>
+                    </legend>
+					<div style="position: absolute; top: 60px; right: 40px;"><img src="static/images/ruzivo_logo.png" style="height:77px;width:125px;"></div>
+                    <p style="">
+					this section needs typography changes
+                        <br>Welcome to the Data-Core Healthcare Ruzivo Demonstration. We are excited to show you how Ruzivo can help you optimize your revenue cycle management by leveraging the power of AI.
+                    </p>
+                Before using Ruzivo, we would love to share with you some helpful information: <br><br>
+				
+				
+			
+			<center><button id="product-tour-trigger" class="btn btn-outline-info" type="button">The Power behind Ruzivo</button></center><br>
+			<center><button id="product-tour-trigger" class="btn btn-outline-info" type="button">Common Medical Billing Terminology</button></center><br>
+			<center><button id="product-tour-trigger" class="btn btn-outline-info" type="button">What is AI/Machine Learning?</button></center><br>
+			 <center><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal"> Get Started </button> </center><br>
+			</div>
+			</div>
+			</div>
+					 <div class="bs-component" style="margin-top: 20px;" data-tour="step: 1; title: Step1; content: Lorem ipsum dolor sit amet">
+            
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+            
+            </div>
+			
+			
+			
+				
+		
+		
+  </div> <!-- End of Left Column -->
+  <!-- Start Middle Column -->
+  <div class="col-sm-6" style="">
+  
+	<div class="bs-component" style="margin-top: 15px;" data-tour="step: 4; title: Step 4; content: Lorem ipsum dolor sit amet">
+
+				 <div class="card">
+								<div class="card-header">
+									<div class="card-title"><i class="fa fa-pie-chart fa-fw"></i> Conversion Status</div><div class="wc-box">
+  <div class="minimize"></div>
+  <div class="maximize"></div>
+  <div class="close"></div>
+</div>
+								</div>
+								<div class="card-body">
+									
+									<table class="table table-sm">
+              <thead>
+                <tr>
+                  
+                  <th style="width: 40%;color: #0078bf;font-size: 16px;"><center>Process</center></th>
+                  <th style="width: 40%;background-color:#dbf0df;opacity:.9;"><center><b>Progress</b></center></th>
+                  <th style="width: 20%;background-color:#CDD9F2;opacity:.9;"><center><b>Result</b></center></th>
+                 
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  
+                  <td style="color: #0078bf;"><center>EOB Identification</center></td>
+                  <td style="" id="sorting_progress"><div id="sortingprogressbar"></div></td>
+                  <td style="color:#0078bf;" id="sorting_result"><center>---</center></td>
+                 
+                </tr>
+                <tr>
+                  
+                  <td style="color: #0078bf;"><center>Auto Banding</center></td>
+                  <td style="" id="banding_progress"><div id="bandingprogressbar"></div></td>
+                  <td style="color:#0078bf;" id="banding_result"><center>---</center></td>
+                  
+                </tr>
+                <tr>
+                 
+                  <td style="color: #0078bf;"><center>Extraction & Validation</center></td>
+                  <td style="" id="ev_progress"><div id="evprogressbar"></div></td>
+                  <td style="color:#0078bf;" id="ev_result"><center>---</center></td>
+                  
+                </tr>
+				<tr>
+                 
+                  <td style="color: #0078bf;"><center>Create 835</center></td>
+                  <td style="" id="generate_progress"><div id="generateprogressbar"></div></td>
+                  <td style="color:#0078bf;" id="generate_result"><center>---</center></td>
+                  
+                </tr>
+				
+                
+                
+                
+              </tbody>
+            </table>
+									
+								</div>
+								
+									</div>
+													
+						
+			
+			</div>
+          
+  
+	   <div class="bs-component" style="margin-top: 20px;" data-tour="step: 3; title: Step 3; content: Lorem ipsum dolor sit amet">
+     		 <div class="card" >
+				<div class="card-header">
+					<div class="card-title"><i class="fa fa-pie-chart fa-fw"></i> Selection Processing (Job ID: EOB0001) </div><div class="wc-box">
+  <div class="minimize"></div>
+  <div class="maximize"></div>
+  <div class="close"></div>
+</div>
+				</div>
+								
+				<table class="table table-sm">
+<thead>
+<tr>
+<th>Filename</th>
+<th>Type</th>
+<th>Size</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+</table>
+				<div style="overflow:auto; display:flex; flex-direction:column-reverse;height: 150px;max-height: 150px;">
+				<table id="fileLabel" class="table table-sm">
+			
+				</table>
+				</div>
+				
+				
+				<div class="card-footer">
+				<input id="load_eob_images_button" class="btn btn-info" type="button" value="Confirm Selection" onclick="load_835_images();" disabled />
+				<div style="float: right;"><input id="convert_eob_images_button" class="btn btn-primary" type="button" value="Convert" onclick="eob835_animation();" disabled />&nbsp;<input id="cancel_eob_images_button" class="btn btn-secondary" type="button" value="Cancel" onClick="window.location.reload();" disabled /></div></div>	
+			</div>
+		  </div>
+  
+   
+ 
+		  
+
+		  
+   </div>
+			
+			<!-- End Middle Column -->
+  <!-- Start Right Column -->
+  <div class="col-sm-3" style="">
+	
+	 <div class="bs-component" style="margin-top: 15px;" data-tour="step: 5; title: Step 5; content: Lorem ipsum dolor sit amet">	
+								 <div class="card">
+								<div class="card-header">
+									<div class="card-title"><i class="fa fa-pie-chart fa-fw"></i> Overall Progress</div><div class="wc-box">
+  <div class="minimize"></div>
+  <div class="maximize"></div>
+  <div class="close"></div>
+</div>
+								</div>
+								<div class="card-body">
+									<div style="margin-top: 0px;" id="overall_circle" class="progress-circle p0">
+				<span id="overall_text">0%</span>
+					<div class="left-half-clipper">
+						<div class="first50-bar"></div>
+							<div class="value-bar"></div>
+					</div>
+			  </div>
+								</div>
+								
+							</div>	
+</div>	
+  
+  
+  
+	<div class="bs-component" style="margin-top: 20px;" data-tour="step: 6; title: Step 6; content: Lorem ipsum dolor sit amet">
+              <div class="card">
+								<div class="card-header">
+									<div class="card-title"><i class="fa fa-pie-chart fa-fw"></i> Action Log </div><div class="wc-box">
+  <div class="minimize"></div>
+  <div class="maximize"></div>
+  <div class="close"></div>
+</div>
+									
+								</div>
+								<div class="card-body" style="min-height: 260px; padding: 10px;">
+									<div style="background: #fff;overflow:auto; display:flex; flex-direction:column-reverse;height: 230px;max-height: 230px;">
+									
+										<ul class="project-activity">
+											<div id="fileliststatus" style="z-index: 999;color: #215185;"></div>
+																			
+											
+										</ul>
+									</div>
+								</div>
+								
+							</div>
+            </div>
+  
+		
+		<div class="container" style="position: absolute; top: 0px;left: 0px;">
+    <div class="row d-flex justify-content-center mt-200"></div> <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ruzivo&#8482 Demonstration Wizard</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body">
+                    <div id="smartwizard">
+					
+                        <ul>
+                            <li><a href="#step-1">Step 1<br /><small>Provider Selection</small></a></li>
+                            <li><a href="#step-2">Step 2<br /><small>EOB Image Source</small></a></li>
+                            <li><a href="#step-3">Step 3<br /><small>Confirm details</small></a></li>
+                        </ul>
+                        <div class="mt-4">
+                            <div id="step-1">
+							   <div class="row">
+							   <div class="col-md-12">
+							   <b>Ready to see Ruzivo in action? Great! <br> <br>Before we begin, this wizard will help you select both a provider source and an image source. Then Ruzivo will take it from there! </b>
+							   </div>
+							   </div>
+							   <div class="row">&nbsp;</div>
+                                <div class="row">
+                                    <div class="col-md-6"><b>Question 1 - Who is your provider? This will assist Ruzivo in optimizing your file processing.</b><br> </div>
+                                    <div class="col-md-6"> <select class="form-control" style="width: 75%;" id="image" name="image">
+   <option value=""> - Select Provider - </option>
+   <option value="static/images/provider_icon_1.png" >Provider 1</option>
+   <option value="static/images/provider_icon_2.png">Provider 2</option>
+   <option value="static/images/provider_icon_3.png">Provider 3</option>
+   <option value="static/images/provider_icon_4.png">Provider 4</option>
+   <option value="static/images/provider_icon_5.png">Provider 5</option>
+   
+</select>
+               <div id="imagePreview" style="height: 100px; width: 100%; display: block;"></div> </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6"> </div>
+                                    <div class="col-md-6"> </div>
+                                </div>
+                            </div>
+                            <div id="step-2">
+                                <div class="row">
+                                    <div class="col-md-6"> Please select input source </div>
+                                    <div class="col-md-6">input code here    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6"> <input type="text" class="form-control" placeholder="State" required> </div>
+                                    <div class="col-md-6"> <input type="text" class="form-control" placeholder="Country" required> </div>
+                                </div>
+                            </div>
+                            <div id="step-3" class="">
+                                <div class="row">
+                                    <div class="col-md-12"> <span>Thanks For submitting your details with BBBootstrap.com. we will send you a confirmation email. We will review your details and revert back.</span> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+  
+  
+  </div>
+  <!-- End Right Column -->
+  
+</div>
+
+
+
+
+
+
+
+
+
+			  <!-- // SlideOut -->
+<div id="slideOut">
+
+
+
+<!--   // Tab -->
+  <div class="slideOutTab">
+    <div>
+      <p><b>Help Guide</b></p>
+    </div>
+  </div>
+  <div class="modal-content">
+   
+    <div class="card-body">
+	
+      <section class="faq-section">
+<div class="container">
+  <div class="row">
+                    <!-- ***** FAQ Start ***** -->
+                    <div class="col-md-8">
+
+                        <div class="faq-title text-center pb-3">
+                            <h2>FAQ</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-6 offset-md-3">
+                        <div class="faq" id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="faqHeading-1">
+                                    <div class="mb-4">
+                                        <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-1" data-aria-expanded="true" data-aria-controls="faqCollapse-1">
+                                            <span class="badge">1</span>What is Lorem Ipsum?
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div id="faqCollapse-1" class="collapse" aria-labelledby="faqHeading-1" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="faqHeading-2">
+                                    <div class="mb-4">
+                                        <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-2" data-aria-expanded="false" data-aria-controls="faqCollapse-2">
+                                            <span class="badge">2</span> Where does it come from?
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div id="faqCollapse-2" class="collapse" aria-labelledby="faqHeading-2" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="faqHeading-3">
+                                    <div class="mb-4">
+                                        <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-3" data-aria-expanded="false" data-aria-controls="faqCollapse-3">
+                                            <span class="badge">3</span>Why do we use it?
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div id="faqCollapse-3" class="collapse" aria-labelledby="faqHeading-3" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="faqHeading-4">
+                                    <div class="mb-4">
+                                        <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-4" data-aria-expanded="false" data-aria-controls="faqCollapse-4">
+                                            <span class="badge">4</span> Where can I get some?
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div id="faqCollapse-4" class="collapse" aria-labelledby="faqHeading-4" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="faqHeading-5">
+                                    <div class="mb-4">
+                                        <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-5" data-aria-expanded="false" data-aria-controls="faqCollapse-5">
+                                            <span class="badge">5</span> What is Lorem Ipsum?
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div id="faqCollapse-5" class="collapse" aria-labelledby="faqHeading-5" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <p> It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="faqHeading-6">
+                                    <div class="mb-4">
+                                        <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-6" data-aria-expanded="false" data-aria-controls="faqCollapse-6">
+                                            <span class="badge">6</span> Where does it come from?
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div id="faqCollapse-6" class="collapse" aria-labelledby="faqHeading-6" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="faqHeading-7">
+                                    <div class="mb-4">
+                                        <h5 class="faq-title" data-toggle="collapse" data-target="#faqCollapse-7" data-aria-expanded="false" data-aria-controls="faqCollapse-7">
+                                            <span class="badge">7</span> Why do we use it?
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div id="faqCollapse-7" class="collapse" aria-labelledby="faqHeading-7" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+				
+				
+				
+				
+				
+                </section>
+	  
+    </div>
+    <div class="modal-footer"> </div>
+	
+  </div>
+  
+</div>
+
+
+					
+      </div>
+       
+       
+				      
+				
+
+            </div>
+          </div>
+		  
+	
+
+		
+			
+			
+			
+			
+			
+			
+			
+			
+       
+        </div>
+
+  
+          
+
+
+
+	
+
+    </div>
+
+</main>
+
+
+		
+
+		
+		
+<!-- Essential javascripts for application to work-->
+<script src="static/js/jquery-3.3.1.min.js"></script>
+ <script src="static/js/popper.min.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+ 
+<!-- Tableau Initialization     -->
+
+
+
+
+<!-- The javascript plugin to display page loading on top-->
+<script src="static/js/plugins/pace.min.js"></script>
+<!-- Product Animations-->
+<script src="static/js/productScript.js"></script>
+<!-- Product Tour-->
+<script src="static/js/vendor/tourguide/tourguide.min.js"></script>
+<script src="static/js/vendor/smartwizard/smartwizard.min.js"></script>
+ <!-- Data table plugin-->
+    <script type="text/javascript" src="static/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="static/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">$('#claim_viewer_table').DataTable();</script>
+     <script type="text/javascript">$('#claim_reject_table').DataTable();</script>
+
+
+<script>
+/*
+ * Initialize Tourguide.js
+*/
+var tourguide = new Tourguide();
+function startTour() {
+	tourguide.start();
+}
+// Attach the touruide start evene to the button press
+var tourbutton = document.getElementById("product-tour-trigger");
+tourbutton.addEventListener("click", startTour);
+
+
+</script>
+
+
+
+<script>
+	$(document).ready(function(){
+    $('.progressWrapper progress').each(function(){
+      var prgsVal = $(this).data('value');
+      var maxN = $(this).attr('max');
+      var pop = prgsVal/maxN * 100
+      
+      $(this).prev().css('left', pop + '%').text(prgsVal);
+      $(this).val(prgsVal);
+    });
+});
+</script>
+
+<script>
+// File Upload Button Delete
+
+$(document).ready(function(){
+     $("#fileLabel").on('click','.btnDelete',function(){
+         $(this).closest('tr').remove();
+      });
+  });
+
+
+</script>
+<script>
+//File Upload Listing Animation
+   
+   window.doClick = function(id) {
+    var el = document.getElementById(id);
+    if (el) { el.click(); }
+}
+
+window.handleFiles = function(oInput) {
+    // var aa = document.getElementById('aa');
+    var aFiles = oInput.files;
+    // alert( aaFiles.length );
+    
+    fileLabel.innerHTML = "";
+    if ( typeof(aFiles) == "undefined" || aFiles == null || aFiles.length == 0 )
+    {
+        if ( oInput.value )
+        {
+            fileLabel.innerHTML = "Single: ";
+            var aFilePath = oInput.value.split('\\');
+            var name = aFilePath[aFilePath.length-1];
+            if ( typeof(oInput.value.type) != "undefined" ) {
+                    name += " (" + oInput.value.type + ")";
+            }
+            fileLabel.innerHTML = name;
+        }
+        else
+        {
+            fileLabel.innerHTML = "None selected";
+        }
+    }
+    else
+    {
+        document.getElementById('fileLabel').setAttribute('style', 'color:#0078bf');
+		fileLabel.innerHTML = "<tr>";
+		
+        for ( i = 0; i < aFiles.length; ++i )
+        {
+            if ( i > 0 ) fileLabel.innerHTML += "";
+				
+            fileLabel.innerHTML += "<td width='30%'><b>" + aFiles[i].name + "</b></td><td width='20%'> (" + aFiles[i].type + ")</td><td width='20%'>"+ aFiles[i].size + " kb</td><td width='20%'><i>Pending</i></td><td width='10%'><span class='badge badge-pill badge-danger btnDelete'>Remove</span></td></tr>"; // 
+        }
+		document.getElementById('load_eob_images_button').disabled = false;
+    }
+}
+
+   
+   
+   
+
+
+//check if an element exists in the DOM
+jQuery.fn.exists = function(){ return this.length > 0; }
+
+
+
+
+
+// script for tab steps
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+
+        var href = $(e.target).attr('href');
+        var $curr = $(".process-model  a[href='" + href + "']").parent();
+
+        $('.process-model li').removeClass();
+
+        $curr.addClass("active");
+        $curr.prevAll().addClass("visited");
+    });
+// end  script for tab steps
+
+
+// ***DROPZONE SCRIPT ***
+
+// Drop handler function to get all files
+async function getAllFileEntries(dataTransferItemList) {
+  let fileEntries = [];
+  // Use BFS to traverse entire directory/file structure
+  let queue = [];
+  // Unfortunately dataTransferItemList is not iterable i.e. no forEach
+  for (let i = 0; i < dataTransferItemList.length; i++) {
+    queue.push(dataTransferItemList[i].webkitGetAsEntry());
+  }
+  while (queue.length > 0) {
+    let entry = queue.shift();
+    if (entry.isFile) {
+      fileEntries.push(entry);
+    } else if (entry.isDirectory) {
+      let reader = entry.createReader();
+      queue.push(...await readAllDirectoryEntries(reader));
+    }
+  }
+  return fileEntries;
+}
+
+// Get all the entries (files or sub-directories) in a directory by calling readEntries until it returns empty array
+async function readAllDirectoryEntries(directoryReader) {
+  let entries = [];
+  let readEntries = await readEntriesPromise(directoryReader);
+  while (readEntries.length > 0) {
+    entries.push(...readEntries);
+    readEntries = await readEntriesPromise(directoryReader);
+  }
+  return entries;
+}
+
+// Wrap readEntries in a promise to make working with readEntries easier
+async function readEntriesPromise(directoryReader) {
+  try {
+    return await new Promise((resolve, reject) => {
+      directoryReader.readEntries(resolve, reject);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+var elDrop = document.getElementById('dropzone');
+var elItems = document.getElementById('upload_file_listing');
+
+elDrop.addEventListener('dragover', function (event) {
+    event.preventDefault();
+    elItems.innerHTML = 0;
+});
+
+elDrop.addEventListener('drop', async function (event) {
+    event.preventDefault();
+    let items = await getAllFileEntries(event.dataTransfer.items);
+    elItems.innerHTML = items.length;
+});
+
+// Image Dropdown Selection for Provider Selection
+$(document).ready(function() {
+    $("#image").change(function() {
+        var src = $(this).val();
+
+        $("#imagePreview").html(src ? "<img style='height: 72px;width:72px;' src='" + src + "'>" : "");
+    });
+});
+
+
+//835 File Viewer Tab Code for html5 reader
+window.onload = function() {
+		var fileInput = document.getElementById('fileInput');
+		var fileDisplayArea = document.getElementById('fileDisplayArea');
+
+		fileInput.addEventListener('change', function(e) {
+			var file = fileInput.files[0];
+			var textType = /text.*/;
+
+			if (file.type.match(textType)) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					fileDisplayArea.innerText = reader.result;
+				}
+
+				reader.readAsText(file);	
+			} else {
+				fileDisplayArea.innerText = "File not supported!"
+			}
+		});
+}
+
+//top app menu
+$(document).ready(function() {
+  $('#navbarDropdown').mouseenter(function() {
+    $('.dropdown-menu').slideToggle(300, "linear");
+  });
+  
+  $('.dropdown-menu').mouseleave(function() {
+    $(this).slideToggle(300, "linear");
+  });
+});
+//app icons menu
+
+$(document).on('click', '.AppTabContent', function() {
+  var show = $(this).data('show');
+  $(show).removeClass("hide").siblings().addClass("hide");
+});
+
+// Click function
+$('#tabs-nav li').click(function(){
+  $('#tabs-nav li').removeClass('active');
+  $(this).addClass('active');
+  $('.tab-content').hide();
+  
+  var activeTab = $(this).find('a').attr('href');
+  $(activeTab).fadeIn();
+  return false;
+});
+
+</script>
+
+<script>
+this.$slideOut = $('#slideOut');
+
+// Slideout show
+this.$slideOut.find('.slideOutTab').on('click', function() {
+  $("#slideOut").toggleClass('showSlideOut');
+});
+</script>
+
+<script>
+
+//jQuery time
+var current_fs, next_fs, previous_fs; //fieldsets
+var left, opacity, scale; //fieldset properties which we will animate
+var animating; //flag to prevent quick multi-click glitches
+
+$(".next").click(function(){
+	if(animating) return false;
+	animating = true;
+	
+	current_fs = $(this).parent();
+	next_fs = $(this).parent().next();
+	
+	//activate next step on progressbar using the index of next_fs
+	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+	
+	//show the next fieldset
+	next_fs.show(); 
+	//hide the current fieldset with style
+	current_fs.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale current_fs down to 80%
+			scale = 1 - (1 - now) * 0.2;
+			//2. bring next_fs from the right(50%)
+			left = (now * 50)+"%";
+			//3. increase opacity of next_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({
+        'transform': 'scale('+scale+')',
+        'position': 'absolute'
+      });
+			next_fs.css({'left': left, 'opacity': opacity});
+		}, 
+		duration: 800, 
+		complete: function(){
+			current_fs.hide();
+			animating = false;
+		}, 
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack'
+	});
+});
+
+$(".previous").click(function(){
+	if(animating) return false;
+	animating = true;
+	
+	current_fs = $(this).parent();
+	previous_fs = $(this).parent().prev();
+	
+	//de-activate current step on progressbar
+	$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+	
+	//show the previous fieldset
+	previous_fs.show(); 
+	//hide the current fieldset with style
+	current_fs.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale previous_fs from 80% to 100%
+			scale = 0.8 + (1 - now) * 0.2;
+			//2. take current_fs to the right(50%) - from 0%
+			left = ((1-now) * 50)+"%";
+			//3. increase opacity of previous_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({'left': left});
+			previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+		}, 
+		duration: 800, 
+		complete: function(){
+			current_fs.hide();
+			animating = false;
+		}, 
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack'
+	});
+});
+
+$(".submit").click(function(){
+	return false;
+})
+
+</script>
+
+<script>
+$("input[type='submit']").click(function(){
+  $("div.spanner").addClass("show");
+  $("div.overlay").addClass("show");
+});
+</script>
+
+<script>
+$(document).ready(function(){
+
+$('#smartwizard').smartWizard({
+selected: 0,
+theme: 'arrows',
+autoAdjustHeight:true,
+transitionEffect:'fade',
+showStepURLhash: false,
+
+});
+
+});
+</script>
+
+<script>
+$(function() {
+    $(".preload").fadeOut(1500, function() {
+        $(".content").fadeIn(750);        
+    });
+});
+
+</script>
+
+
+
+{% endblock content %}
+
+

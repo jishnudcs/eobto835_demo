@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <title>Blank Page - Cirrus</title>
+    {% block meta %}
+    <meta name="description" content="Cirrus Flask">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock meta %}
+    {% block stylesheets %}
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% endblock stylesheets %}
+   {% endblock head %}
+  </head>
+
+<body>
+
+<main>
+
+
+
+              <div class="table-responsive" style="margin-top: 10px;">
+                <table class="table table-hover table-bordered" id="sampleTable">
+                  <thead>
+                    <tr>
+                      <th>Batch Name</th>
+                      <th>Batch Count</th>
+                      <th>Operator</th>
+                      <th>Batch Stage</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for item in data %}
+                    <tr>
+                      <td>{{item[0]}}</td>
+                      <td>{{item[1]}}</td>
+                      <td>{{item[2]}}</td>
+                      <td>{{item[3]}}</td>
+                    </tr>
+                   {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </main>
+ <!-- Essential javascripts for application to work-->
+    <script src="static/js/jquery-3.3.1.min.js"></script>
+    <script src="static/js/popper.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="static/js/plugins/pace.min.js"></script>
+    <!-- Page specific javascripts-->
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="static/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="static/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">$('#sampleTable').DataTable();</script>
+
+
+
+</body>
+</html>

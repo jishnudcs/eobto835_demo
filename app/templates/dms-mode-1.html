@@ -1,0 +1,750 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<main id="dmsapp" class="app-content">
+
+<div id="claim_viewer_status" class="claim_viewer_overlay">
+  <div class="claim_viewer_popup">
+  	<div class="tile mb-4">
+  		<h5 class="modal-title">Claim Viewer Status</h5>
+        <a class="claim_viewer_close" href="#">&times;</a>
+        <div class="row">
+          <div class="col-lg-3" style="margin-top: 50px;">
+          		<fieldset>
+			     <legend>Denial Code Legend</legend>
+			     <table border="0" style="font-size: 13px;margin-left: 0px;color:#000;padding: 10px;width:100%;" cellpadding="0" cellspacing="0">
+
+				 	<tr><td><b>D007</b>&nbsp;&nbsp;&nbsp;CPT INCONSISTENT WITH GENDER</td></tr>
+				 	<tr><td><b>D020</b>&nbsp;&nbsp;&nbsp;LIABILITY CLAIM</td></tr>
+				 	<tr><td><b>D009</b>&nbsp;&nbsp;&nbsp;DIAG INCONSISTENT WITH AGE</td></tr>
+				 	<tr><td><b>D026</b>&nbsp;&nbsp;&nbsp;EXPENSES INCURRED PRIOR TO COVERGE</td></tr>
+				 	<tr><td><b>D010</b>&nbsp;&nbsp;&nbsp;DIAG INCONSISTENT WITH GENDER</td></tr>
+				 	<tr><td><b>D027</b>&nbsp;&nbsp;&nbsp;EXPENSES INCURRED AFTER COVERAGE TERMINATED</td></tr>
+				 	<tr><td><b>D011</b>&nbsp;&nbsp;&nbsp;INCONSISTENT DIAGNOSIS AND PROCEDURE</td></tr>
+				 	<tr><td><b>D029</b>&nbsp;&nbsp;&nbsp;TIME LIMIT EXPIRED</td></tr>
+				 	<tr><td><b>D014</b>&nbsp;&nbsp;&nbsp;DOB FOLLOWS DOS</td></tr>
+				 	<tr><td><b>D031</b>&nbsp;&nbsp;&nbsp;PATIENT CANNOT BE MARKED AS OUR INSURED</td></tr>
+				 	<tr><td><b>D110</b>&nbsp;&nbsp;&nbsp;BILLING DATE PREDATES SERVICE DATE</td></tr>
+				 	<tr><td><b>D032</b>&nbsp;&nbsp;&nbsp;NOT ELIGIBLE DEPENDENT</td></tr>
+				 	<tr><td><b>D033</b>&nbsp;&nbsp;&nbsp;INSURED DOES NOT HAVE DEPENDENT COVERAGE</td></tr>
+				 	<tr><td><b>D097</b>&nbsp;&nbsp;&nbsp;BUNDLED SERVICES</td></tr>
+				 	<tr><td><b>D207</b>&nbsp;&nbsp;&nbsp;NPI-INVALID FORMAT</td></tr>
+				 	<tr><td><b>D208</b>&nbsp;&nbsp;&nbsp;PROVIDER NOT ENROLLED</td></tr>
+
+				 </table>
+			     </fieldset>
+          </div>
+          <div class="col-lg-9">
+	
+  		
+	  	   <div class="modal-body">
+				<div class="table-responsive">
+		             <table class="table table-hover table-bordered" style="background: #fff;border: 1px solid #ccc;" id="claim_viewer_table">
+		                  <thead>
+		                    <tr>
+		                      <th></th>
+		                      <th>Hospital</th>
+		                      <th>Dept</th>
+		                      <th>Patient Name</th>
+		                      <th>Admission Date</th>
+		                      <th>Denial Code</th>
+		                      <th>View Claim Detail <br><small>(Opens in New Tab)</small></th>
+		                    </tr>
+		                  </thead>
+		                  <tbody>
+		                    <tr>
+							  <td>1</td>
+							  <td>Spring Valley Hospital</td>
+							  <td>ED</td>
+							  <td>Dorothy Marshall</td>
+							  <td>2016-10-12</td>
+							  <td><span>D031</span></td>
+							  <td><a onclick="return ChkConnection();" class="btn btn-info" target="_blank" href="/claim-detail.html">Claim Detail</a></td>
+
+						    </tr>
+							<tr>
+							  <td>2</td>
+							  <td>Spring Valley Hospital</td>
+							  <td>ED</td>
+							  <td>Sherry Clarke</td>
+							  <td>2016-03-16</td>
+							  <td><span>D033</span></td>
+                              <td><a onclick="return ChkConnection();" class="btn btn-info" href="/Edit/ViewClaimDetails?id=C625829693">Claim Detail</a>
+							                                                    </td>
+							                                        </tr>
+							                                        <tr>
+							                                            <td>3</td>
+							                                            <td>Spring Valley Hospital</td>
+							                                            <td>ED</td>
+							                                            <td>Jackie Mccoy</td>
+							                                            <td>2016-03-02</td>
+							                                            <td>
+							                                                        <span>D032</span>
+
+							                                            </td>
+
+
+							                                                    <td>
+							                                                        <a onclick="return ChkConnection();" class="btn btn-info"  href="/Edit/ViewClaimDetails?id=C620664023">Claim Detail</a>
+							                                                    </td>
+							                                        </tr>
+							                                        <tr>
+							                                            <td>4</td>
+							                                            <td>Spring Valley Hospital</td>
+							                                            <td>ED</td>
+							                                            <td>Janelle Jewell</td>
+							                                            <td>2016-03-06</td>
+							                                            <td>
+							                                                        <span>D007</span>
+
+							                                            </td>
+
+
+							                                                    <td>
+							                                                        <a onclick="return ChkConnection();" class="btn btn-info" href="/Edit/ViewClaimDetails?id=C739872598">Claim Detail</a>
+							                                                    </td>
+							                                        </tr>
+							                                        <tr>
+							                                            <td>5</td>
+							                                            <td>Spring Valley Hospital</td>
+							                                            <td>ED</td>
+							                                            <td>Gwendolyn Moss</td>
+							                                            <td>2016-01-30</td>
+							                                            <td>
+							                                                        <span>D009</span>
+
+							                                            </td>
+
+
+							                                                    <td>
+							                                                        <a onclick="return ChkConnection();" class="btn btn-info" href="/Edit/ViewClaimDetails?id=C638609188">Claim Detail</a>
+							                                                    </td>
+							                                        </tr>
+							                                        <tr>
+							                                            <td>6</td>
+							                                            <td>Spring Valley Hospital</td>
+							                                            <td>ED</td>
+							                                            <td>Lori Tintinger</td>
+							                                            <td>2016-08-07</td>
+							                                            <td>
+							                                                        <span>D010</span>
+
+							                                            </td>
+
+
+							                                                    <td>
+							                                                        <a onclick="return ChkConnection();" class="btn btn-info" href="/Edit/ViewClaimDetails?id=C826661658">Claim Detail</a>
+							                                                    </td>
+							                                        </tr>
+							                                        <tr>
+							                                            <td>7</td>
+							                                            <td>Spring Valley Hospital</td>
+							                                            <td>ED</td>
+							                                            <td>Peter Allen</td>
+							                                            <td>2016-01-28</td>
+							                                            <td>
+							                                                        <span>D020</span>
+
+							                                            </td>
+
+
+							                                                    <td>
+							                                                        <a onclick="return ChkConnection();" class="btn btn-info" href="/Edit/ViewClaimDetails?id=C326062941">Claim Detail</a>
+							                                                    </td>
+							                                        </tr>
+							                                        <tr>
+							                                            <td>8</td>
+							                                            <td>Spring Valley Hospital</td>
+							                                            <td>ED</td>
+							                                            <td>Maxine Members</td>
+							                                            <td>2016-04-06</td>
+							                                            <td>
+							                                                        <span>D207</span>
+
+							                                            </td>
+
+
+							                                                    <td>
+							                                                        <a onclick="return ChkConnection();" class="btn btn-info" href="/Edit/ViewClaimDetails?id=C890185680">Claim Detail</a>
+							                                                    </td>
+							                                        </tr>
+							                                        <tr>
+							                                            <td>9</td>
+							                                            <td>Spring Valley Hospital</td>
+							                                            <td>ED</td>
+							                                            <td>Milton Noori</td>
+							                                            <td>2016-11-16</td>
+							                                            <td>
+							                                                        <span>D208</span>
+
+							                                            </td>
+
+
+							                                                    <td>
+							                                                        <a onclick="return ChkConnection();" class="btn btn-info" href="/Edit/ViewClaimDetails?id=C973057360">Claim Detail</a>
+							                                                    </td>
+							                                        </tr>
+							                                        <tr>
+							                                            <td>10</td>
+							                                            <td>Spring Valley Hospital</td>
+							                                            <td>ED</td>
+							                                            <td>Frances Washington</td>
+							                                            <td>2016-08-08</td>
+							                                            <td>
+							                                                        <span>D110</span>
+
+							                                            </td>
+
+
+							                                                    <td>
+							                                                        <a onclick="return ChkConnection();" class="btn btn-info" href="/Edit/ViewClaimDetails?id=C278453225">Claim Detail</a>
+							                                                    </td>
+							                                        </tr>
+							                                        <tr>
+							                                            <td>11</td>
+							                                            <td>Spring Valley Hospital</td>
+							                                            <td>ED</td>
+							                                            <td>Debra Green</td>
+							                                            <td>2016-09-01</td>
+							                                            <td>
+							                                                        <span>D097</span>
+
+							                                            </td>
+
+
+							                                                    <td>
+							                                                        <a onclick="return ChkConnection();" class="btn btn-info" href="/Edit/ViewClaimDetails?id=C854067426">Claim Detail</a>
+							                                                    </td>
+							                                        </tr>
+							                                        <tr>
+							                                            <td>12</td>
+							                                            <td>Spring Valley Hospital</td>
+							                                            <td>ED</td>
+							                                            <td>Gene Hoffman</td>
+							                                            <td>2016-05-22</td>
+							                                            <td>
+							                                                        <span>D097</span>
+
+							                                            </td>
+
+
+							                                                    <td>
+							                                                        <a onclick="return ChkConnection();" class="btn btn-info" href="/Edit/ViewClaimDetails?id=C824605177">Claim Detail</a>
+							                                                    </td>
+							                                        </tr>
+							                                        <tr>
+							                                            <td>13</td>
+							                                            <td>Spring Valley Hospital</td>
+							                                            <td>ED</td>
+							                                            <td>Bernadette Basil</td>
+							                                            <td>2016-06-20</td>
+							                                            <td>
+							                                                        <span>D097</span>
+
+							                                            </td>
+
+
+							                                                    <td>
+							                                                        <a onclick="return ChkConnection();" class="btn btn-info" href="/Edit/ViewClaimDetails?id=C596320180">Claim Detail</a>
+							                                                    </td>
+							                                        </tr>
+							                                        <tr>
+							                                            <td>14</td>
+							                                            <td>Spring Valley Hospital</td>
+							                                            <td>ED</td>
+							                                            <td>Judith Johnson</td>
+							                                            <td>2016-03-28</td>
+							                                            <td>
+							                                                        <span>D011</span>
+
+							                                            </td>
+
+
+							                                                    <td>
+							                                                        <a onclick="return ChkConnection();" class="btn btn-info" href="/Edit/ViewClaimDetails?id=C250875661">Claim Detail</a>
+							                                                    </td>
+							                                        </tr>
+							                                        <tr>
+							                                            <td>15</td>
+							                                            <td>Spring Valley Hospital</td>
+							                                            <td>ED</td>
+							                                            <td>Raquel Riley</td>
+							                                            <td>2016-06-04</td>
+							                                            <td>
+							                                                        <span>D011</span>
+
+							                                            </td>
+
+
+							                                                    <td>
+							                                                        <a onclick="return ChkConnection();" class="btn btn-info" href="/Edit/ViewClaimDetails?id=C872342387">Claim Detail</a>
+							                                                    </td>
+							                                        </tr>
+
+
+
+		                  </tbody>
+		                </table>
+              </div>
+          </div></div></div>
+			</div>
+			
+
+		</div>
+	</div>
+	</div>
+
+
+
+
+
+<div id="claim_reject_status" class="claim_reject_overlay">
+  <div class="claim_reject_popup">
+	<h5 class="modal-title">Claim Reject Status</h5>
+  		<a class="claim_reject_close" href="#">&times;</a>
+  		<div class="row">
+  		<div class="col-lg-3" style="margin-top: 50px;">
+          		<fieldset>
+			     <legend>Denial Code Legend</legend>
+			     <table border="0" style="font-size: 13px;margin-left: 0px;color:#000;padding: 10px;width:100%;" cellpadding="0" cellspacing="0">
+
+				 	<tr><td><b>D007</b>&nbsp;&nbsp;&nbsp;CPT INCONSISTENT WITH GENDER</td></tr>
+				 	<tr><td><b>D020</b>&nbsp;&nbsp;&nbsp;LIABILITY CLAIM</td></tr>
+				 	<tr><td><b>D009</b>&nbsp;&nbsp;&nbsp;DIAG INCONSISTENT WITH AGE</td></tr>
+				 	<tr><td><b>D026</b>&nbsp;&nbsp;&nbsp;EXPENSES INCURRED PRIOR TO COVERGE</td></tr>
+				 	<tr><td><b>D010</b>&nbsp;&nbsp;&nbsp;DIAG INCONSISTENT WITH GENDER</td></tr>
+				 	<tr><td><b>D027</b>&nbsp;&nbsp;&nbsp;EXPENSES INCURRED AFTER COVERAGE TERMINATED</td></tr>
+				 	<tr><td><b>D011</b>&nbsp;&nbsp;&nbsp;INCONSISTENT DIAGNOSIS AND PROCEDURE</td></tr>
+				 	<tr><td><b>D029</b>&nbsp;&nbsp;&nbsp;TIME LIMIT EXPIRED</td></tr>
+				 	<tr><td><b>D014</b>&nbsp;&nbsp;&nbsp;DOB FOLLOWS DOS</td></tr>
+				 	<tr><td><b>D031</b>&nbsp;&nbsp;&nbsp;PATIENT CANNOT BE MARKED AS OUR INSURED</td></tr>
+				 	<tr><td><b>D110</b>&nbsp;&nbsp;&nbsp;BILLING DATE PREDATES SERVICE DATE</td></tr>
+				 	<tr><td><b>D032</b>&nbsp;&nbsp;&nbsp;NOT ELIGIBLE DEPENDENT</td></tr>
+				 	<tr><td><b>D033</b>&nbsp;&nbsp;&nbsp;INSURED DOES NOT HAVE DEPENDENT COVERAGE</td></tr>
+				 	<tr><td><b>D097</b>&nbsp;&nbsp;&nbsp;BUNDLED SERVICES</td></tr>
+				 	<tr><td><b>D207</b>&nbsp;&nbsp;&nbsp;NPI-INVALID FORMAT</td></tr>
+				 	<tr><td><b>D208</b>&nbsp;&nbsp;&nbsp;PROVIDER NOT ENROLLED</td></tr>
+
+				 </table>
+			     </fieldset>
+          </div>
+	  	 <div class="col-lg-9">
+	  	   <div class="modal-body">
+				<div class="table-responsive">
+		             <table class="table table-hover table-bordered table-striped" style="background: #fff;border: 1px solid #ccc;" id="claim_reject_table">
+		                  <thead>
+		                    <tr>
+		                      <th>Claim</th>
+		                      <th>Eligibility</th>
+		                      <th>Rule</th>
+		                      <th>AI</th>
+		                    </tr>
+		                  </thead>
+		                  <tbody>
+		                    <tr>
+		                      <td>C142804582</td>
+		                      <td></td>
+		                      <td>D207</td>
+		                      <td></td>
+		                    </tr>
+		                    <tr>
+		                      <td>C320536483</td>
+		                      <td></td>
+		                      <td>D110</td>
+		                      <td></td>
+			                    </tr>
+		                    <tr>
+		                      <td>C484657304</td>
+		                      <td></td>
+		                      <td>D007</td>
+		                      <td></td>
+		                    </tr>
+		                    <tr>
+		                      <td>C526327076</td>
+		                      <td></td>
+		                      <td>D010</td>
+		                      <td>D010</td>
+		                    </tr>
+		                    <tr>
+		                      <td>C640235558</td>
+		                      <td></td>
+		                      <td>D208</td>
+		                      <td></td>
+		                    </tr>
+		                    <tr>
+		                      <td>C756638739</td>
+		                      <td></td>
+		                      <td>D009</td>
+		                      <td>D009</td>
+		                    </tr>
+		                    <tr>
+		                      <td>C877869007</td>
+		                      <td></td>
+		                      <td>D014, D110</td>
+		                      <td></td>
+		                    </tr>
+		                    <tr>
+		                      <td>C919928283</td>
+		                      <td></td>
+		                      <td>D029</td>
+		                      <td></td>
+		                    </tr>
+		                    <tr>
+		                      <td>C439773300</td>
+		                      <td>D027</td>
+		                      <td></td>
+		                      <td></td>
+		                    </tr>
+		                    <tr>
+		                      <td>C315481354</td>
+		                      <td>D026</td>
+		                      <td></td>
+		                      <td></td>
+		                    </tr>
+		                    <tr>
+		                      <td>C436824138</td>
+		                      <td>D027</td>
+		                      <td></td>
+		                      <td></td>
+		                    </tr>
+		                    <tr>
+		                      <td>C182931142</td>
+		                      <td>D031</td>
+		                      <td></td>
+		                      <td></td>
+		                    </tr>
+		                    <tr>
+		                      <td>C305996076</td>
+		                      <td></td>
+		                      <td>D011</td>
+		                      <td></td>
+		                    </tr>
+		                  </tbody>
+		                </table>
+              	</div>
+              </div>
+			</div>
+			<div class="modal-footer">
+			     <div style="width: 100%;">
+				 <fieldset>
+				 <legend>Denial Code Legend</legend>
+				 <table border="0" style="background:#fff;font-size: 11px;margin-left: 0px;color:#000;padding: 5px;width:100%;" cellpadding="0" cellspacing="0">
+
+
+				 	<tr>
+				 		<td><b>D007</b>&nbsp;&nbsp;&nbsp;CPT INCONSISTENT WITH GENDER</td>
+				 		<td><b>D020</b>&nbsp;&nbsp;&nbsp;LIABILITY CLAIM</td>
+				 		<td><b>D032</b>&nbsp;&nbsp;&nbsp;NOT ELIGIBLE DEPENDENT</td>
+				 	</tr>
+				 	<tr>
+				 		<td><b>D009</b>&nbsp;&nbsp;&nbsp;DIAG INCONSISTENT WITH AGE</td>
+				 		<td><b>D026</b>&nbsp;&nbsp;&nbsp;EXPENSES INCURRED PRIOR TO COVERGE</td>
+				 		<td><b>D033</b>&nbsp;&nbsp;&nbsp;INSURED DOES NOT HAVE DEPENDENT COVERAGE</td>
+				 	</tr>
+				 	<tr>
+				 		<td><b>D010</b>&nbsp;&nbsp;&nbsp;DIAG INCONSISTENT WITH GENDER</td>
+				 		<td><b>D027</b>&nbsp;&nbsp;&nbsp;EXPENSES INCURRED AFTER COVERAGE TERMINATED</td>
+				 		<td><b>D097</b>&nbsp;&nbsp;&nbsp;BUNDLED SERVICES</td>
+				 	</tr>
+				 	<tr>
+				 		<td><b>D011</b>&nbsp;&nbsp;&nbsp;INCONSISTENT DIAGNOSIS AND PROCEDURE</td>
+				 		<td><b>D029</b>&nbsp;&nbsp;&nbsp;TIME LIMIT EXPIRED</td>
+				 		<td><b>D207</b>&nbsp;&nbsp;&nbsp;NPI-INVALID FORMAT</td>
+				 	</tr>
+				 	<tr>
+				 		<td><b>D014</b>&nbsp;&nbsp;&nbsp;DOB FOLLOWS DOS</td>
+				 		<td><b>D031</b>&nbsp;&nbsp;&nbsp;PATIENT CANNOT BE MARKED AS OUR INSURED</td>
+				 		<td><b>D208</b>&nbsp;&nbsp;&nbsp;PROVIDER NOT ENROLLED</td>
+
+				 	</tr>
+				 	<tr>
+				 	<td><b>D110</b>&nbsp;&nbsp;&nbsp;BILLING DATE PREDATES SERVICE DATE</td>
+				 	</tr>
+
+				 </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			     </div>
+			     <button class="btn btn-secondary claim_reject_bottom_close" type="button" onclick="location.href='#'">Close</button>
+            </div>
+		</div>
+	</div>
+	</div>
+	</div>
+  
+<!-- style="background: url('static/images/2522360.jpg');background-size:cover;background-repeat:no-repeat;" -->
+
+	<!-- Typography-->
+      <div class="tile mb-4" style="background: url('static/images/2522360.jpg');background-size:cover;background-repeat:no-repeat;">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="page-header">
+              <h3 class="mb-3 line-head" id="typography" style="height: 50px;color:#fff;padding: 10px;text-shadow: 2px 1px 1px #000;">Denial Management System Demonstration - Mode 1 (Serial Processing)</h3>
+              		<div id="reset_demo" style="position: absolute; top: 5px; right: 25px;z-index:1000;"><button onClick="window.location.reload();" class="btn btn-warning" type="button">Reset</button></div>
+					<div id="demo_mode" style="position: absolute; top: 5px; right:100px;z-index:1000;">
+						<select class="form-control" onchange="if (this.value) window.location.href=this.value">
+
+						    <option id="default-option" value="/dms-mode-1.html">Mode 1 (Serial)</option>
+						    <option value="/dms-mode-2.html">Mode 2 (Parallel)</option>
+                   		</select>
+  	               </div>
+					<div id="demo_batch" style="position: absolute; top: 5px; right:265px;z-index:1000;">
+						<select class="form-control" id="exampleSelect1" onchange="if (this.value) window.location.href=this.value">
+						    <option value="/dms-mode-1.html">Batch 1</option>
+						    <option value="/dms-mode-2.html">Batch 2</option>
+	               		</select>
+  	               </div>
+
+            </div>
+          </div>
+        </div>
+
+        
+        <!-- Headings-->
+        <div class="row">
+            
+          <div class="col-lg-8" style="margin-top: 30px;">
+               <h5 style="color:#fff;text-shadow: 2px 1px 1px #000; border-bottom: 1px solid #fff">Workflow</h5>
+            <div class="bs-component" style="-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);border: 1px solid #4896C9;background-color: rgba( 255,255, 255, 0.1); /* transparent white */">
+
+            	<!-- Labels-->
+		    	<div id="label_loadclaims" style="position: absolute; top: 76px; left: 30px;width: 200px;z-index: 998;color: #fff;font-size: 16px;text-shadow: 2px 1px 1px #000;"><b>Load Claims</b></div>
+		    	<div id="label_loadclaims" style="position: absolute; top: 76px; left: 230px;width: 200px;z-index: 998;color: #fff;font-size: 16px;text-shadow: 2px 1px 1px #000;"><b>Check Eligibility</b></div>
+		    	<div id="label_loadclaims" style="position: absolute; top: 76px; left: 420px;width: 200px;z-index: 998;color: #fff;font-size: 16px;text-shadow: 2px 1px 1px #000;"><b>Rules Engine</b></div>
+		    	<div id="label_loadclaims" style="position: absolute; top: 76px; left: 620px;width: 200px;z-index: 998;color: #fff;font-size: 16px;text-shadow: 2px 1px 1px #000;"><b>AI/ML Engine</b></div>
+		    	<div id="label_loadclaims" style="position: absolute; top: 76px; left: 820px;width: 200px;z-index: 998;color: #fff;font-size: 16px;text-shadow: 2px 1px 1px #000;"><b>Compile/Submit Claims</b></div>
+		    	<div id="label_loadclaims" style="position: absolute; top: 266px; left: 30px;width: 200px;z-index: 998;color: #fff;font-size: 16px;text-shadow: 2px 1px 1px #000;"><b>Resubmission</b></div>
+		    	<div id="label_loadclaims" style="position: absolute; top: 321px; left: 520px;width: 200px;z-index: 998;color: #fff;font-size: 16px;text-shadow: 2px 1px 1px #000;"><b>Interpretation Module</b></div>
+		    	<div id="label_loadclaims" style="position: absolute; top: 471px; left: 220px;width: 200px;z-index: 998;color: #fff;font-size: 16px;text-shadow: 2px 1px 1px #000;"><b>Claim Viewer</b></div>
+		    	<div id="label_loadclaims" style="position: absolute; top: 471px; left: 410px;width: 200px;z-index: 998;color: #fff;font-size: 16px;text-shadow: 2px 1px 1px #000;"><b>Compare Rejects</b></div>
+		    	
+
+                <!-- Load Claims-->
+		    	<div id="greenbar_1" style="position: absolute; top: 148px; left: 108px;width: 200px;z-index: 998;"></div>
+		    	<div id="arrow_1" style="position: absolute; top: 129px; left: 153px;z-index: 999;"></div>
+
+		    	<!-- Check Eligibility-->
+		    	<div id="greenbar_2" style="position: absolute; top: 148px; left: 310px;width: 200px;z-index: 998;"></div>
+		    	<div id="arrow_2" style="position: absolute; top: 127px; left: 353px;width: 200px;z-index: 999;"></div>
+
+
+		    	<div id="redbar_1_1" style="position: absolute; top: 181px; left: 272px;z-index: 998;"></div>
+		    	<div id="arrow_1_1" style="position: absolute; top: 196px; left: 253px;width: 200px;z-index: 999;"></div>
+
+
+		    	<div id="redbar_1_2" style="position: absolute; top: 285px; left: 272px;z-index: 998;"></div>
+			   	<div id="arrow_1_2" style="position: absolute; top: 266px; left: 353px;width: 200px;z-index: 999;"></div>
+
+				<!-- Rules Engine-->
+			   	<div id="greenbar_3" style="position: absolute; top: 148px; left: 512px;width: 200px;z-index: 998;"></div>
+				<div id="arrow_3" style="position: absolute; top: 127px; left: 558px;width: 200px;z-index: 999;"></div>
+
+			   	<div id="redbar_2_1" style="position: absolute; top: 182px; left: 475px;z-index: 998;"></div>
+			   	<div id="arrow_2_1" style="position: absolute; top: 194px; left: 456px;width: 200px;z-index: 999;"></div>
+
+				<!-- AI/ML Engine-->
+		    	<div id="greenbar_4" style="position: absolute; top: 148px; left: 713px;width: 200px;z-index: 998;"></div>
+		    	<div id="arrow_4" style="position: absolute; top: 127px; left: 763px;width: 200px;z-index: 999;"></div>
+
+		    	<div id="redbar_3_1" style="position: absolute; top: 181px; left: 678px;z-index: 998;"></div>
+				<div id="arrow_3_1" style="position: absolute; top: 194px; left: 660px;width: 200px;z-index: 999;"></div>
+
+				<div id="redbar_3_2" style="position: absolute; top: 285px; left: 510px;z-index: 998;"></div>
+			   	<div id="arrow_3_2" style="position: absolute; top: 266px; left: 558px;width: 200px;z-index: 999;"></div>
+
+			   	<!-- Reject Queue-->
+				<div id="redbar_4_1" style="position: absolute; top: 315px; left: 475px;width: 200px;z-index: 998;"></div>
+				<div id="arrow_5" style="position: absolute; top: 331px; left: 456px;width: 200px;z-index: 999;"></div>
+
+
+				<!-- Compare Rejects-->
+				<div id="redbar_5" style="position: absolute; top: 418px; left: 312px;width: 200px;z-index: 998;"></div>
+				<div id="arrow_6" style="position: absolute; top: 399px; left: 353px;width: 200px;z-index: 999;"></div>
+
+
+				<!-- Claim Viewer-->
+				<div id="greenbar_7" style="position: absolute; top: 418px; left: 171px;width: 200px;z-index: 998;"></div>
+				<div id="arrow_7" style="position: absolute; top: 398px; left: 193px;width: 200px;z-index: 999;"></div>
+
+				<div id="greenbar_7_1" style="position: absolute; top: 317px; left: 172px;z-index: 998;"></div>
+				<div id="arrow_7_1" style="position: absolute; top: 336px; left: 155px;width: 200px;z-index: 999;"></div>
+
+				<!-- Resubmission-->
+				<div id="greenbar_8" style="position: absolute; top: 149px; left: 173px;width: 200px;z-index: 998;"></div>
+				<div id="arrow_8" style="position: absolute; top: 193px; left: 155px;width: 200px;z-index: 999;"></div>
+
+				<div class="demo-panel" style="background: url('static/images/mode_1_transparency.png');background-repeat:no-repeat;border: 0px solid #ddd;min-height: 533px;width: 1000px; margin-top: 0px;margin-left: 0px;">
+				  <button style="position:absolute; left:42px; top:119px;width:64px;height:64px;z-index: 999;" class="demo-btn" type="button" onClick="loadclaims_animation();"><img src="static/images/loadclaims.svg" height="48px" width="48px"></button>
+				  <button style="position:absolute; left:245px; top:118px;width:64px;height:64px;z-index: 999;" class="demo-btn" type="button" onClick="checkeligibility_animation();"><img src="static/images/checkeligibility.svg" height="48px" width="48px"></button>
+    		      <button style="position:absolute; left:447px; top:118px;width:64px;height:64px;z-index: 999;" class="demo-btn" type="button" onClick="rulesengine_animation();"><img src="static/images/rulesengine.svg" height="48px" width="48px"></button>
+    		      <button style="position:absolute; left:649px; top:119px;width:64px;height:64px;z-index: 999;" class="demo-btn" type="button" onClick="aimlengine_animation();"><img src="static/images/aimlengine.svg" height="48px" width="48px"></button>
+    		      <button style="position:absolute; left:852px; top:119px;width:64px;height:64px;z-index: 999;" class="demo-btn" type="button" onClick="compilesubmit_animation();"><img src="static/images/compilesubmit.svg" height="48px" width="48px"></button>
+    		      <button style="position:absolute; left:143px; top:252px;width:64px;height:64px;z-index: 999;" class="demo-btn" type="button" onClick="resubmission_animation();"><img src="static/images/resubmitclaims.svg" height="48px" width="48px"></button>
+    		      <button style="position:absolute; left:446px; top:252px;width:64px;height:64px;z-index: 999;" class="demo-btn" type="button" onClick=""><div id="rejectstatus"></div><img src="static/images/interpretation.svg" height="48px" width="48px"></button>
+    		      <button style="position:absolute; left:248px; top:387px;width:64px;height:64px;" class="demo-btn" type="button" onClick="claimsviewer_animation();location.href='#claim_viewer_status'"><img src="static/images/claimviewer.svg" height="48px" width="48px"></button>
+    		      <button style="position:absolute; left:447px; top:386px;width:64px;height:64px;" class="demo-btn" type="button" onClick="comparerejects_animation();location.href='#claim_reject_status'"><img src="static/images/comparerejects.png" height="48px" width="48px"></button>
+    	</div>
+
+    		<!-- <div style="-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);border: 1px solid #4896C9;padding: 5px; overflow:auto; display:flex; flex-direction:column-reverse;height: 140px; width: 98%;margin-left: 10px;margin-right: 10px;margin-bottom: 10px;font-size: 17px;color: #fff;font-family: Arial, Helvetica, sans-serif;background-color: rgba( 255,255, 255, 0.1); /* transparent white */">
+                <div class="card-body">
+                  <blockquote class="card-blockquote">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    <footer>Someone famous in
+                      <cite title="Source Title">Source Title</cite>
+                    </footer>
+                  </blockquote>
+                </div>
+              </div> -->
+
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="bs-component">
+
+              <div style="margin-top: 30px;">
+			  <h5 style="color:#fff;text-shadow: 2px 1px 1px #000;border-bottom: 1px solid #fff;">Claims Results</h5>
+			  <div class="messages" style="-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);border: 1px solid #4896C9;padding: 10px;height: 240px;background-color: rgba( 255,255, 255, 0.1); /* transparent white */">
+			
+				<div id="matrix">
+					<table class="table table-sm">
+              <thead>
+                <tr>
+                  
+                  <th style="color: #fff;text-shadow: 2px 1px 1px #000;font-size: 16px;"><center>Workflow Process</center></th>
+                  <th style="background-color:#dbf0df;opacity:.9;"><center><b>Claims Passed</b></center></th>
+                  <th style="background-color:#f8d4d8;opacity:.9;"><center><b>Claims Failed</b></center></th>
+                 
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  
+                  <td style="color: #fff;text-shadow: 2px 1px 1px #000;"><center>File Load</center></td>
+                  <td style="background-color:#dbf0df;opacity:.9;" id="fileload_passed"><center>---</center></td>
+                  <td style="background-color:#f8d4d8;opacity:.9;" id="fileload_failed"><center>---</center></td>
+                 
+                </tr>
+                <tr>
+                  
+                  <td style="color: #fff;text-shadow: 2px 1px 1px #000;"><center>Check Eligibility</center></td>
+                  <td style="background-color:#dbf0df;opacity:.9;" id="checkeligibility_passed"><center>---</center></td>
+                  <td style="background-color:#f8d4d8;opacity:.9;" id="checkeligibility_failed"><center>---</center></td>
+                  
+                </tr>
+                <tr>
+                 
+                  <td style="color: #fff;text-shadow: 2px 1px 1px #000;"><center>Rules Engine</center></td>
+                  <td style="background-color:#dbf0df;opacity:.9;" id="rulesengine_passed"><center>---</center></td>
+                  <td style="background-color:#f8d4d8;opacity:.9;" id="rulesengine_failed"><center>---</center></td>
+                  
+                </tr>
+                <tr>
+                  
+                  <td style="color: #fff;text-shadow: 2px 1px 1px #000;"><center>AI/ML Engine</center></td>
+                  <td style="background-color:#dbf0df;opacity:.9;" id="aimlengine_passed"><center>---</center></td>
+                  <td style="background-color:#f8d4d8;opacity:.9;" id="aimlengine_failed"><center>---</center></td>
+                  
+                </tr>
+                <tr>
+                  
+                  <td style="color: #fff;text-shadow: 2px 1px 1px #000;"><center>Compile/Submit</center></td>
+                  <td style="background-color:#dbf0df;opacity:.9;" id="compilesubmit_passed"><center>---</center></td>
+                  <td style="background-color:#f8d4d8;opacity:.9;" id="compilesubmit_failed"><center>---</center></td>
+                  
+                </tr>
+                <tr>
+                  
+                  <td style="color: #fff;text-shadow: 2px 1px 1px #000;font-size: 18px;"><center><b>Total</b></center></td>
+                  <td style="background-color:#dbf0df;opacity:.9;" id="total_passed"><center>---</center></td>
+                  <td style="background-color:#f8d4d8;opacity:.9;" id="total_failed"><center>---</center></td>
+                  
+                </tr>
+              </tbody>
+            </table>
+
+				</div>
+			  </div>
+			</div>
+              
+              
+
+              <div style="margin-top: 30px;">
+				<h5 style="color:#fff;text-shadow: 2px 1px 1px #000; border-bottom: 1px solid #fff">Claims Status</h5>
+              	<div id="mainprogressbar"></div>
+              </div>	
+
+              <div style="margin-top: 30px;">
+              <h5 style="color:#fff; border-bottom: 1px solid #fff;text-shadow: 2px 1px 1px #000;">Workflow Status</h5>
+              <div class="messages" style="-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);border: 1px solid #4896C9;padding: 5px; overflow:auto; display:flex; flex-direction:column-reverse;height: 300px;max-height: 300px;font-size: 17px;color: #fff;font-family: Arial, Helvetica, sans-serif;background-color: rgba( 255,255, 255, 0.1); /* transparent white */">
+				<div id="status"></div>
+			  </div>
+              </div>
+			  
+            </div>
+          </div>
+
+          
+        </div>
+
+	
+
+			
+    	
+	</div>
+
+
+
+    
+
+	
+
+    
+
+</main>
+
+
+
+
+
+<!-- Essential javascripts for application to work-->
+<script src="static/js/jquery-3.3.1.min.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+
+<!-- The javascript plugin to display page loading on top-->
+<script src="static/js/plugins/pace.min.js"></script>
+<!-- Page specific javascripts-->
+<script src="static/js/dms-mode-1.js"></script>
+ <!-- Data table plugin-->
+    <script type="text/javascript" src="static/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="static/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">$('#claim_viewer_table').DataTable();</script>
+     <script type="text/javascript">$('#claim_reject_table').DataTable();</script>
+
+
+
+{% endblock content %}
+
+

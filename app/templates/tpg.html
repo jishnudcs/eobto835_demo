@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<main class="app-content">
+	<div class="bs-component" style="margin-top: -15px;">
+	     <ol class="breadcrumb">
+	       <li class="breadcrumb-item"><a href="#">Home</a></li>
+	       <li class="breadcrumb-item"><a href="#">Clients</a></li>
+	       <li class="breadcrumb-item"><a href="#">TPG Direct</a></li>
+	       <li class="breadcrumb-item active">Dashboard</li>
+	     </ol>
+	</div>
+
+
+	<div class="tile mb-4">
+	  <div class="row">
+	    <div class="col-lg-12">
+	      <div class="page-header">
+	        <h4><i class="fa fa-id-card-o"></i>  TPG Direct - Farmer's Opt-Out (#8061)</h4>
+	      </div>
+	    </div>
+	  </div>
+
+	 <br>
+	<div class="row">
+	  <div class="col-lg-12" style="min-height: 625px;">
+	   	<div class="bs-component">
+	      <ul class="nav nav-tabs">
+	        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#client"><i class="fa fa-info-circle fa-fw"></i> Client Information</a></li>
+	        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#loading"><i class="fa fa-file fa-fw"></i> File Processing</a></li>
+	        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#status"><i class="fa fa-refresh fa-fw"></i> Batch Status</a></li>
+	        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#reports"><i class="fa fa-file-pdf-o fa-fw"></i> Reports</a></li>
+			<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#settings"><i class="fa fa-cog"></i> Settings</a></li>
+		  </ul>
+		    <div class="tab-content" id="myTabContent">
+		      <div class="tab-pane fade active show" id="client">
+		        <p>This is the client info screen</p>
+		      </div>
+		      <div class="tab-pane fade" id="loading">
+			     <!-- Typography-->
+				      <div class="tile mb-4">
+				        <div class="row">
+				          <div class="col-lg-12">
+				            <div class="page-header">
+				              <h4 class="mb-3 line-head" id="typography">TPG File Loading & Batch Creation</h4>
+				            </div>
+				          </div>
+				        </div>
+				        <!-- Headings-->
+				        <div class="row">
+				          <div class="col-lg-8">
+				            <div class="bs-component">
+				              <div class="tile p-0" style="height: 350px;">
+							  							    <div class="messanger">
+							  							      <div class="messages" style="overflow:auto; display:flex; flex-direction:column-reverse;max-height: 325px;">
+							  							        <div id="log"></div>
+							  							      </div>
+							  							    </div>
+							  							  </div>
+							  							 <form id="emit" method="POST" action='#'>
+							  							   <input class="form-control" type="text" name="emit_data" id="emit_data" placeholder="Send Command to Server (type 'help' for more)" style="width:75%;float:left;">
+							  							   <input type="submit" value="Send Cmd" style="float:right;margin-top:5px;">
+							 </form>
+
+
+				             </div>
+				          </div>
+				          <div class="col-lg-4">
+				            <div class="bs-component">
+				              <h2>Emphasis classes</h2>
+				              <p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
+				              <p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+				              <p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
+				              <p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p>
+				              <p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+				              <p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+				            </div>
+				          </div>
+				        </div>
+				        <br>
+				        <!-- Blockquotes-->
+				        <div class="row">
+				          <div class="col-lg-12">
+				            <h4 class="mb-3 line-head" id="type-blockquotes">PDF Dropzone</h4>
+				          </div>
+				        </div>
+				        <div class="row">
+				          <div class="col-lg-12">
+				            <div class="bs-component">
+				              <iframe src="tpg-upload.html" style="min-height: 350px;" frameBorder="0" width="100%" title="Iframe Example"></iframe>
+				            </div>
+				          </div>
+				        </div>
+      				  </div>
+			  </div>
+			  <div class="tab-pane fade" id="status">
+			     <iframe src="tpg-batch-status.html" style="min-height: 620px;" frameBorder="0" width="100%" title="Iframe Example"></iframe>
+			  </div>
+		      <div class="tab-pane fade" id="reports">
+ 			    <br><p>This is the test screen for reports </p>
+ 			  </div>
+		      <div class="tab-pane fade" id="settings">
+			    <iframe src="tpg-settings.html" style="min-height: 620px;" frameBorder="0" width="100%" title="Iframe Example"></iframe>
+			  </div>
+		    </div>
+		</div>
+
+
+	  </div>
+    </div>
+  </div>
+</main>
+
+
+<script type="text/javascript" src="static/js/plugins/dropzone.js"></script>
+
+{% endblock content %}
+
+

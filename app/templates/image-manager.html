@@ -1,0 +1,320 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<main id="dmsapp" class="app-content">
+
+
+<!-- style="background: url('static/images/2522360.jpg');background-size:cover;background-repeat:no-repeat;" -->
+
+	<!-- Typography-->
+      <div class="tile mb-4" style="background: url('static/images/2522360.jpg');background-size:cover;background-repeat:no-repeat;">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="page-header">
+              <h3 class="mb-3 line-head" id="typography" style="height: 50px;color:#fff;padding: 10px;text-shadow: 2px 1px 1px #000;">Path Viewer Utility</h3>
+              		
+
+            </div>
+          </div>
+        </div>
+
+        
+        <!-- Headings-->
+        <div class="row">
+             <div class="col-lg-3">
+            <div class="bs-component">
+
+              <div style="margin-top: 30px;">
+              <h5 style="color:#fff; border-bottom: 1px solid #fff;text-shadow: 2px 1px 1px #000;">Batch Dictionary Tree</h5>
+              <input id="batch_tree_query" class="search-input" />
+              <div class="messages" style="-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);border: 1px solid #4896C9;padding: 5px; overflow:auto; display:flex; flex-direction:column-reverse;min-height: 100px;font-size: 17px;color: #fff;font-family: Arial, Helvetica, sans-serif;background-color: rgba( 255,255, 255, 0.1); /* transparent white */">
+				
+				<div id="batch_tree" class="demo">
+					{% for batch, imgseq in bd_dict.items() %}
+					<ul>
+						
+      						<li data-jstree='{ "opened" : false }'>{{batch}}
+  							
+  							{% for provider, bimgpath in imgseq.items() %}				    
+							<ul>
+								
+								<li data-jstree='{ "opened" : false }'>{{provider}}   
+							       				    
+										<ul>
+											{% for bimgpath in bimgpath %}
+											<li data-jstree='{ "opened" : true }'> {{ bimgpath }} 							
+											</li>					
+											{% endfor %}		
+
+										</ul>
+									
+								</li>
+							</ul>
+							{% endfor %}
+						   
+						</li>
+  
+						
+						
+					</ul>
+					{% endfor %}
+				</div>
+			  </div>
+              </div>
+
+
+              <div style="margin-top: 30px;">
+			  <h5 style="color:#fff;text-shadow: 2px 1px 1px #000;border-bottom: 1px solid #fff;">Select Dictionaries</h5>
+			  <div class="messages" style="-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);border: 1px solid #4896C9;padding: 10px;height: 175px;background-color: rgba( 255,255, 255, 0.1); /* transparent white */">
+			
+				<div class="form-group" style="background:#fff;">
+                    <label for="exampleInputFile">Select Batch Dictionary (*.pkl)</label>
+                    <input class="form-control-file" id="exampleInputFile" type="file" aria-describedby="fileHelp">
+                  </div>
+                
+                <div class="form-group" style="background: #fff;">
+                    <label for="exampleInputFile">Select Image Dictionary (*.pkl)</label>
+                    <input class="form-control-file" id="exampleInputFile" type="file" aria-describedby="fileHelp">
+                  </div>
+                  
+			  </div>
+			</div>
+                         
+
+              
+			  
+			  <div style="margin-top: 30px;">
+              <h5 style="color:#fff; border-bottom: 1px solid #fff;text-shadow: 2px 1px 1px #000;">Image Find Tree</h5>
+              <label for="exampleInputFile">Search Image Dictionarys</label>
+              <input id="img_tree_query" class="form-control-file" />
+              <div class="messages" style="-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);border: 1px solid #4896C9;padding: 5px; overflow:auto; display:flex; flex-direction:column-reverse;max-height: 400px;font-size: 17px;color: #fff;font-family: Arial, Helvetica, sans-serif;background-color: rgba( 255,255, 255, 0.1); /* transparent white */">
+				<div id="img_tree" class="demo">
+					{% for batch, imgseq in img_dict.items() %}
+					<ul>
+						
+      						<li data-jstree='{ "opened" : false }'>{{batch}}
+      							<ul>
+								
+								<li data-jstree='{ "opened" : false }'><font style="font-size: 14px;">{{imgseq}}</font>   
+							       				    
+										
+								</li>
+							</ul>
+      							
+      							
+      							
+
+      						</li>
+  
+						
+						
+					</ul>
+					{% endfor %}
+				</div>
+			  </div>
+              </div>
+
+             
+			  
+            </div>
+          </div>
+
+
+          <div class="col-lg-9" style="margin-top: 30px;">
+               <h5 style="color:#fff;text-shadow: 2px 1px 1px #000; border-bottom: 1px solid #fff">Data Table</h5>
+            
+				<div class="demo-panel" style="-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);border: 1px solid #4896C9;padding: 5px; overflow:auto; display:flex; flex-direction:column-reverse;font-size: 17px;color: #fff;font-family: Arial, Helvetica, sans-serif;background-color: rgba( 255,255, 255, 0.1); /* transparent white */">
+				 <div class="table-responsive">
+				 	
+                <table class="table table-hover table-bordered" id="bd_Table" style="background: #fff;border: 1px solid #ccc;">
+                  <thead>
+                    <tr>
+                      <th width="10%"></th>
+                      <th>Batch Name</th>
+                      <th>Provider Type</th>
+                      <th>Image Name</th>
+                      <th class="none">Image Path</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  	{% for batch, provider in bd_dict.items() %}
+						{% for provider in bd_dict[batch] %}				    
+							{% for bimgpath in bd_dict[batch][provider] %}
+									<tr>
+										<td width="10%"></td>
+										<td> {{ batch }} </td>
+										<td> {{ provider }} </td>
+										<td> {{ bimgpath }}	</td>				
+									    <td></td>
+									</tr>
+									
+							{% endfor %}		
+							
+						{% endfor %}
+													
+					{% endfor %}
+         
+                  </tbody>
+               
+                
+                </table>
+
+               
+
+    	</div>
+
+    		<!-- <div style="-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);border: 1px solid #4896C9;padding: 5px; overflow:auto; display:flex; flex-direction:column-reverse;height: 140px; width: 98%;margin-left: 10px;margin-right: 10px;margin-bottom: 10px;font-size: 17px;color: #fff;font-family: Arial, Helvetica, sans-serif;background-color: rgba( 255,255, 255, 0.1); /* transparent white */">
+                <div class="card-body">
+                  <blockquote class="card-blockquote">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    <footer>Someone famous in
+                      <cite title="Source Title">Source Title</cite>
+                    </footer>
+                  </blockquote>
+                </div>
+              </div> -->
+
+            </div>
+          </div>
+         
+
+
+         
+
+
+
+        </div>
+
+	
+			
+    	
+	</div>
+
+
+	
+
+    
+
+</main>
+
+
+
+
+
+<!-- Essential javascripts for application to work-->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+
+<!-- The javascript plugin to display page loading on top-->
+<script src="static/js/plugins/pace.min.js"></script>
+<!-- Page specific javascripts-->
+<script src="static/js/dms-mode-1.js"></script>
+ <!-- Data table plugin-->
+   <script type="text/javascript" src="static/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="static/js/plugins/dataTables.bootstrap.min.js"></script>
+   
+    
+
+    <script type="text/javascript">
+
+    /* Formatting function for row details - modify as you need */
+function format ( d ) {
+    // `d` is the original data object for the row
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+        '<tr>'+
+            '<td>Image Path:</td>'+
+            '<td>'+d.name+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>EOB Image Tools:</td>'+
+            '<td><button class="btn btn-secondary" type="button">Download Image</button></td>'+
+        '</tr>'+
+    '</table>';
+}
+ 
+$(document).ready(function() {
+  
+    
+    var table = $('#bd_Table').DataTable( {
+        
+        "columns": [
+            {
+                "className":      'details-control',
+                "orderable":      false,
+                "data":           null,
+                "defaultContent": ''
+            },
+            { "data": "Batch Name" },
+            { "data": "Provider Type" },
+            { "data": "Image Name" },
+            { "data": "Image Path", "visible":false }
+        ],
+        "order": [[1, 'asc']]
+    } );
+     
+    // Add event listener for opening and closing details
+    $('#bd_Table tbody').on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+ 
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child( format(row.data()) ).show();
+            tr.addClass('shown');
+        }
+    } );
+} );
+    </script>
+  
+	
+	
+	<script type="text/javascript">
+
+	$(function () {
+  $("#batch_tree").jstree({
+    "plugins" : [ "search" ]
+  });
+  var to = false;
+  $('#batch_tree_query').keyup(function () {
+    if(to) { clearTimeout(to); }
+    to = setTimeout(function () {
+      var v = $('#batch_tree_query').val();
+      $('#batch_tree').jstree(true).search(v);
+    }, 250);
+  });
+});
+	
+
+	$(function () {
+  $("#img_tree").jstree({
+    "plugins" : [ "search" ]
+  });
+  var to = false;
+  $('#img_tree_query').keyup(function () {
+    if(to) { clearTimeout(to); }
+    to = setTimeout(function () {
+      var v = $('#img_tree_query').val();
+      $('#img_tree').jstree(true).search(v);
+    }, 250);
+  });
+});
+	
+
+	
+
+	</script>
+
+   
+
+
+{% endblock content %}
+
+

@@ -1,0 +1,347 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<main class="app-content">
+	<div class="bs-component" style="margin-top: -15px;">
+	     <ol class="breadcrumb">
+	       <li class="breadcrumb-item"><a href="#">Home</a></li>
+	       <li class="breadcrumb-item"><a href="#">Claim Viewer</a></li>
+	       <li class="breadcrumb-item">Claim Detail</li>
+	       <li class="breadcrumb-item active">Claim #C315481354</li>
+	     </ol>
+	</div>
+
+<!-- <div class="alert alert-dismissible alert-warning">
+                <button class="close" type="button" data-dismiss="alert">×</button>
+                <h4>Warning!</h4>
+                <p>Potential Denial Code(s) Detected. Please review the highlighted fields and select <b>"Edit This Claim"</b> to correct.</p>
+              </div>
+
+-->
+     
+<div class="tile mb-4" style="background: #fff;background-size:cover;background-repeat:no-repeat;">
+     
+     <div class="row">
+        <div class="col-md-5">
+        	<h1 style="margin-bottom: 15px;">Goucher, Patrick</h1>
+                   <h4 style="margin-bottom: 0px;">Claim: #C315481354</h4>
+                   <h5 style="margin-bottom: 0px;">Batch: 1</h5>
+                   <h5 style="margin-bottom: 0px;">Status: <font color="#DC3545">&nbsp;Exception Queue</font></h5>
+                   <div id="fsm_container" class="fsm-container">
+                   		
+				<div class="fsm google">
+					<img src="static/images/claim.jpg" style="height: inherit; width: inherit;">
+                     
+				</div> <p style="position: absolute; right: 20px; top: 110px;"><small>(Click to enlarge claim)</small></p></div>
+				<div class="tile-footer">
+              <div class="row">
+                <div class="col-md-8" style="margin-top: 0px;position:absolute;left: 325px;">
+                  <button class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Edit Claim</button>&nbsp;&nbsp;&nbsp;<button onclick="window.close();" class="btn btn-primary"><i class="fa fa-fw fa-lg fa-times-circle"></i>Return to Viewer</button>
+                </div>
+              </div>
+            </div>
+          <div class="tile" style="background: #E9F4F9;margin-top: 65px;">
+            <h3 class="tile-title">Patient Detail</h3>
+            <div class="tile-body">
+                      	<form role="form">
+    <div class="row">
+        <div class="form-group col-md-4">
+                            
+                  <label class="control-label"><b>Patient Name</b></label>
+                  
+                    <input class="form-control" type="text" placeholder="Patrick Goucher">
+                  
+                
+        </div>
+        <div class="form-group col-md-4">
+             <label class="control-label"><b>Date of Birth</b></label>
+                  
+                    <input class="form-control" type="text" placeholder="01/01/1977">
+                  
+        </div>
+        <div class="form-group col-md-4">
+             <label class="control-label"><b>Gender</b></label>
+                  
+                    <input class="form-control" type="text" placeholder="M">
+                  
+        </div>
+    </div>
+    
+    
+</form>
+            </div>
+            
+          </div>
+
+          <div class="tile" style="background: #FFF6E1;">
+            <h3 class="tile-title">Insurance Detail</h3>
+            <div class="tile-body">
+                      	<form role="form">
+
+    <div class="row">
+        
+								  	    <div class="form-group col-md-4" style="">
+								             <label class="control-label"><b>Payer</b></label>
+								             <input class="form-control dms-is-invalid" type="text" placeholder="Other">
+								  	    </div>
+
+										<div class="form-group col-md-4"  style="">
+											 <label class="control-label"><b>Subscriber ID</b></label>
+										     <input class="form-control dms-is-invalid" type="text" placeholder="FOF211409801">
+								  	    </div>
+</div>
+	<div class="row">
+								  	    <div class="form-group col-md-3"  style="">
+								             <label class="control-label"><b>Effective Start Date</b></label>
+								             <input class="form-control dms-is-invalid" type="text" placeholder="04/26/2016">
+								  	    </div>
+
+								  	    <div class="form-group col-md-3"  style="">
+											 <label class="control-label"><b>Effective End Date</b></label>
+										     <input class="form-control" type="text" placeholder="04/26/2017">
+								  	    </div>
+        
+    </div>
+    
+    
+</form>
+            </div>
+            
+          </div>
+
+           
+        </div>
+        <div class="col-md-7">
+          <div class="tile" style="background: #E7E2EE;" >
+            <h3 class="tile-title">Service Detail</h3>
+            <div class="tile-body">
+            	<form role="form">
+            	
+            					<div class="row">
+										<div class="form-group col-md-3">
+										     <label class="control-label"><b>Provider NPI</b></label>
+											 <input class="form-control" type="text" placeholder="1487829818">
+										</div>
+
+										
+								  		<div class="form-group col-md-3">
+										     <label class="control-label"><b>Admission Date</b></label>
+										     <input class="form-control dms-is-invalid" type="text" placeholder="05/17/2016">
+										</div>
+
+										<div class="form-group col-md-3">
+										     <label class="control-label"><b>Discharge Date</b></label>
+										     <input class="form-control" type="text" placeholder="04/01/2016">
+										</div>
+								</div>
+
+
+								<div class="row">		
+										<div class="form-group col-md-2">
+										     <label class="control-label"><b>Diag 1</b></label>
+										     <input class="form-control" type="text" placeholder="I214">
+								  		</div>
+
+								  		<div class="form-group col-md-2">
+										     <label class="control-label"><b>Diag 2</b></label>
+										     <input class="form-control" type="text" placeholder="I10">
+								  		</div>
+
+								  		<div class="form-group col-md-2">
+										     <label class="control-label"><b>Diag 3</b></label>
+										     <input class="form-control" type="text" placeholder="I25110">
+								  		</div>
+
+								  		<div class="form-group col-md-2">
+										     <label class="control-label"><b>Diag 4</b></label>
+										     <input class="form-control" type="text" placeholder="E785">
+								  		</div>
+
+								  		<div class="form-group col-md-2">
+										     <label class="control-label"><b>Diag 5</b></label>
+										     <input class="form-control" type="text" placeholder="Z881">
+								  		</div>
+								</div>
+								<div class="row">		
+								  		<div class="form-group col-md-2">
+										     <label class="control-label"><b>Proc 1</b></label>
+										     <input class="form-control" type="text" placeholder="0271346">
+								  		</div>
+
+								  		<div class="form-group col-md-2">
+										     <label class="control-label"><b>Proc 2</b></label>
+										     <input class="form-control" type="text" placeholder="">
+								  		</div>
+								</div>
+								<div class="row">		
+								  		<div class="form-group col-md-3">
+										     <label class="control-label"><b>Tot Charge</b></label>
+										     <input class="form-control" type="text" placeholder="73819">
+								  		</div>
+
+										
+								  		<div class="form-group col-md-3">
+										     <label class="control-label"><b>Claim Submission Date</b></label>
+										     <input class="form-control" type="text" placeholder="05/26/2016">
+								  		</div>
+								</div>
+  
+</form>
+              
+            </div>
+            
+          </div>
+
+   <div class="tile" style="background: #FEE7EF;">
+            <h3 class="tile-title">Denial Detail</h3>
+            <div class="tile-body">
+                      	<form role="form">
+    <div class="row">
+        <div class="form-group col-sm-4">
+            @* input for first name *@
+        </div>
+        <div class="form-group col-sm-4">
+            @* input for middle name *@
+        </div>
+        <div class="form-group col-sm-4">
+            @* input for last name *@
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            @* input for address *@
+        </div>
+        <div class="form-group col-sm-3">
+            @* input for city *@
+        </div>
+        <div class="form-group col-sm-3">
+            @* input for state *@
+        </div>
+        <div class="form-group col-sm-3">
+            @* input for zip *@
+        </div>
+    </div>
+    
+</form>
+            </div>
+            
+          </div>
+        </div>
+        
+        
+      </div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+        </div>
+       
+      </div>
+</div>
+
+
+<script type="text/javascript" >
+
+
+	//Setup
+	var fsmActual = document.createElement('div');
+	fsmActual.setAttribute('id', 'fsm_actual');
+	document.body.appendChild(fsmActual);
+	var $fsm = document.querySelectorAll('.fsm');;
+	var $fsmActual = document.querySelector('#fsm_actual');
+	$fsmActual.style.position = "absolute";
+
+	var position = {};
+	var size = {};
+
+
+	//modal action stuffs
+	var openFSM = function(event) {
+		var $this = event.currentTarget;
+		position = $this.getBoundingClientRect();
+		size = {
+			width: window.getComputedStyle($this).width,
+			height: window.getComputedStyle($this).height
+		}
+
+		$fsmActual.style.position = "fixed";
+		$fsmActual.style.top = position.top + 'px';
+		$fsmActual.style.left = position.left + 'px';
+		$fsmActual.style.height = size.height;
+		$fsmActual.style.width = size.width;
+		$fsmActual.style.margin = $this.style.margin;
+
+		setTimeout(function(){
+			$fsmActual.innerHTML = $this.innerHTML;
+			var classes = $this.classList.value.split(' ');
+			for (var i = 0; i < classes.length; i++) {
+				$fsmActual.classList.add(classes[i]);
+			}
+			$fsmActual.classList.add('growing');
+			$fsmActual.style.height = '95%';
+			$fsmActual.style.width = '75%';
+			$fsmActual.style.top = '55px';
+			$fsmActual.style.left = '175px';
+			$fsmActual.style.margin = '0';
+			$fsmActual.style.overflow = 'scroll';
+
+		}, 1);
+
+		setTimeout(function(){
+			$fsmActual.classList.remove('growing');
+			$fsmActual.classList.add('full-screen')
+		}, 1000);
+	};
+
+	var closeFSM = function(event){
+		var $this = event.currentTarget;
+
+		$this.style.height = size.height;
+		$this.style.width = size.width;
+		$this.style.top = position.top + 'px';
+		$this.style.left = position.left + 'px';
+		$this.style.margin = '0';
+		$this.classList.remove('full-screen');
+		$this.classList.add('shrinking');
+
+		setTimeout(function(){
+			while($this.firstChild) $this.removeChild($this.firstChild);
+			var classList = $this.classList;
+			while (classList.length > 0) {
+				 classList.remove(classList.item(0));
+			}
+			$this.style = '';;
+		}, 1000);
+	};
+
+	for (var i = 0; i < $fsm.length; i++) {
+		$fsm[i].addEventListener("click", openFSM);
+	}
+	$fsmActual.addEventListener("click", closeFSM);
+
+
+
+
+</script>
+
+
+</main>
+
+
+
+
+{% endblock content %}
+
+

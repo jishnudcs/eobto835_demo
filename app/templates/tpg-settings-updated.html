@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <title>Blank Page - Cirrus</title>
+    {% block meta %}
+    <meta name="description" content="Cirrus Flask">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock meta %}
+    {% block stylesheets %}
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% endblock stylesheets %}
+   {% endblock head %}
+  </head>
+
+<body style="overflow-x: hidden;">
+
+<main>
+
+    <!-- Typography-->
+	      <div class="tile mb-4">
+	        <div class="row">
+	          <div class="col-lg-12">
+	            <div class="page-header">
+	              <h4><i class="fa fa-edit"></i>  TPG Direct - Farmer's Opt-Out (#8061)</h4>
+	            </div>
+	          </div>
+	        </div>
+
+
+
+
+
+
+
+			<br>
+	        <!-- Headings-->
+	        <div class="row">
+	        <div class="col-md-9">
+
+
+			              <div class="alert alert-dismissible alert-success">
+						                  TPG Settings Updated
+              </div>
+
+			<div class="tile-footer">
+					        <div class="row">
+					          <div class="col-md-12">
+					            <form action="{{ url_for('main.tpgsettings') }}">
+    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Return to Settings</button>
+</form>
+					          </div>
+					        </div>
+		      </div>
+
+        </div>
+
+
+	        <!-- Blockquotes-->
+
+
+      </div>
+
+
+
+    </main>
+
+
+<script type="text/javascript" src="static/js/plugins/dropzone.js"></script>
+
+
+
+</body>
+</html>
+

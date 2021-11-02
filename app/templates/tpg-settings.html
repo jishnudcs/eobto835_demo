@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <title>Blank Page - Cirrus</title>
+    {% block meta %}
+    <meta name="description" content="Cirrus Flask">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock meta %}
+    {% block stylesheets %}
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% endblock stylesheets %}
+   {% endblock head %}
+  </head>
+
+<body style="overflow-x: hidden;">
+
+
+<main>
+
+<!-- Headings-->
+
+
+<br>
+	    <h5><i class="fa fa-cog"></i> TPG Settings</h5><br>
+
+	        <form action="{{ url_for('main.tpgsettings') }}" method="post" class="form-horizontal">
+	          <div class="form-group row">
+	            <label class="control-label col-md-3">Input Folder Path</label>
+	              <div class="col-md-8">
+	                <input class="form-control" name="tpg_input_path" type="text" value="{{tpg_input_path}}"><small class="form-text text-muted" id="fileHelp">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+	              </div>
+	          </div>
+	          <div class="form-group row">
+	            <label class="control-label col-md-3">In Process Folder</label>
+	              <div class="col-md-8">
+	                <input class="form-control" name="tpg_ip_path" type="text" value="{{tpg_ip_path}}"><small class="form-text text-muted" id="fileHelp">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+	              </div>
+	          </div>
+	          <div class="form-group row">
+	   	    	<label class="control-label col-md-3">Done Folder Path</label>
+				  <div class="col-md-8">
+				    <input class="form-control" name="tpg_done_path" type="text" value="{{tpg_done_path}}"><small class="form-text text-muted" id="fileHelp">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+				  </div>
+			  </div>
+			  <div class="form-group row">
+			    <label class="control-label col-md-3">Image Output Path</label>
+				  <div class="col-md-8">
+			        <input class="form-control" name="tpg_image_output_path" type="text" value="{{tpg_image_output_path}}"><small class="form-text text-muted" id="fileHelp">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+				  </div>
+			  </div>
+			 <div class="form-group row">
+			   <label class="control-label col-md-3">Database Server:</label>
+			     <div class="col-md-8">
+			       <input class="form-control" name="tpg_db_server" type="text" value="{{tpg_db_server}}"><small class="form-text text-muted" id="fileHelp">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+			     </div>
+			 </div>
+			 <div class="form-group row">
+			   <label class="control-label col-md-3">Database Username:</label>
+			     <div class="col-md-8">
+			       <input class="form-control" name="tpg_db_username" type="text" value="{{tpg_db_username}}"><small class="form-text text-muted" id="fileHelp">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+			     </div>
+			 </div>
+			 <div class="form-group row">
+			   <label class="control-label col-md-3">Database Password:</label>
+			     <div class="col-md-8">
+			       <input class="form-control" name="tpg_db_password" type="text" value="{{tpg_db_password}}"><small class="form-text text-muted" id="fileHelp">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+			     </div>
+			 </div>
+		  </div>
+		      <div class="tile-footer">
+		        <div class="row">
+		          <div class="col-md-12">
+		            <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update TPG Settings</button>
+		          </div>
+		        </div>
+		      </div>
+
+			</form>
+
+
+
+
+
+
+
+</main>
+
+
+<script type="text/javascript" src="static/js/plugins/dropzone.js"></script>
+
+
+
+
+</body>
+</html>
