@@ -30,7 +30,7 @@ db = 'TPG'
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-TPG_UPLOADED_PATH=os.path.join(basedir, 'uploads')
+##TPG_UPLOADED_PATH=os.path.join(basedir, 'uploads')
 
 DROPZONE_ALLOWED_FILE_CUSTOM=True
 DROPZONE_ALLOWED_FILE_TYPE='.pdf'
@@ -42,7 +42,7 @@ DROPZONE_REDIRECT_VIEW='uploadcomplete'  # set redirect view
     
 ### Additions 11/03/21    
        
-UPLOAD_PATH = 'C:/uploads' 
+##UPLOAD_PATH = 'C:/uploads' 
 
    
     
@@ -97,20 +97,20 @@ def docs():
 
 @main.route('/eob-835-home.html', methods=['GET','POST'])
 def index():
-    files = os.listdir(UPLOAD_PATH)
-    return render_template('eob-835-home.html',files=files)
+##    files = os.listdir(UPLOAD_PATH)
+    return render_template('eob-835-home.html')
 
-@main.route('/eob-835-home.html', methods=['GET','POST'])
-def upload_files():
-    if request.method == "POST":
-        todo = request.form.get("todo")
-        print(todo)
-        uploaded_file = request.files['file']
-        filename = secure_filename(uploaded_file.filename)
-        if filename != '':
-            file_ext = os.path.splitext(filename)[1]
-            uploaded_file.save(os.path.join(UPLOAD_PATH, filename))
-    return render_template('eob-835-home.html',  filename=filename)
+##@main.route('/eob-835-home.html', methods=['GET','POST'])
+##def upload_files():
+##    if request.method == "POST":
+##        todo = request.form.get("todo")
+##        print(todo)
+##        uploaded_file = request.files['file']
+##        filename = secure_filename(uploaded_file.filename)
+##        if filename != '':
+##            file_ext = os.path.splitext(filename)[1]
+##            uploaded_file.save(os.path.join(UPLOAD_PATH, filename))
+##    return render_template('eob-835-home.html',  filename=filename)
 
 
 
