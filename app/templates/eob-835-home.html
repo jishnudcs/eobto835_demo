@@ -64,7 +64,7 @@
 	  
     </aside>
 
-<main id="dmsapp" class="app-content content">
+<main id="dmsapp" class="app-content"> <!-- add 'content' class for fadein -->
 
 
 
@@ -309,10 +309,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', end
 			
 			
 			
-			
-			
-			
-			
             
             </div>
 			
@@ -344,6 +340,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', end
                   <th style="width: 40%;color: #0078bf;font-size: 16px;"><center>Process</center></th>
                   <th style="width: 40%;background-color:#dbf0df;opacity:.9;"><center><b>Progress</b></center></th>
                   <th style="width: 20%;background-color:#CDD9F2;opacity:.9;"><center><b>Result</b></center></th>
+				  <th style="width: 20%;background-color:#CDD9F2;opacity:.9;"><center><b>Time </b></center></th>
                  
                 </tr>
               </thead>
@@ -353,6 +350,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', end
                   <td style="color: #0078bf;"><center>EOB Identification</center></td>
                   <td style="" id="sorting_progress"><div id="sortingprogressbar"></div></td>
                   <td style="color:#0078bf;" id="sorting_result"><center>---</center></td>
+				  <td style="color:#0078bf;" id="sorting_result"><center>{{filename}}</center></td>
                  
                 </tr>
                 <tr>
@@ -532,16 +530,22 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', end
                             <div id="step-2">
                                 <div class="row">
                                     <div class="col-md-6"> Please select input source </div>
-                                    <div class="col-md-6">input code here    </div>
+                                    <div class="col-md-6">  <h1>File Upload</h1>
+    <form id="todo-form" method="POST" action="" enctype="multipart/form-data">
+      <p><input type="file" name="todo" id="todo"></p>
+      
+   
+    <hr>
+ </div>
                                 </div>
                                 <div class="row mt-3">
-                                    <div class="col-md-6"> <input type="text" class="form-control" placeholder="State" required> </div>
-                                    <div class="col-md-6"> <input type="text" class="form-control" placeholder="Country" required> </div>
+                                    <div class="col-md-6">     </div>
+                                    <div class="col-md-6">  </div>
                                 </div>
                             </div>
                             <div id="step-3" class="">
                                 <div class="row">
-                                    <div class="col-md-12"> <span>Thanks For submitting your details with BBBootstrap.com. we will send you a confirmation email. We will review your details and revert back.</span> </div>
+                                    <div class="col-md-12"> <p><input type="submit" value="Submit"></p>  </form></div>
                                 </div>
                             </div>
                         </div>
@@ -905,64 +909,7 @@ jQuery.fn.exists = function(){ return this.length > 0; }
 // end  script for tab steps
 
 
-// ***DROPZONE SCRIPT ***
 
-// Drop handler function to get all files
-async function getAllFileEntries(dataTransferItemList) {
-  let fileEntries = [];
-  // Use BFS to traverse entire directory/file structure
-  let queue = [];
-  // Unfortunately dataTransferItemList is not iterable i.e. no forEach
-  for (let i = 0; i < dataTransferItemList.length; i++) {
-    queue.push(dataTransferItemList[i].webkitGetAsEntry());
-  }
-  while (queue.length > 0) {
-    let entry = queue.shift();
-    if (entry.isFile) {
-      fileEntries.push(entry);
-    } else if (entry.isDirectory) {
-      let reader = entry.createReader();
-      queue.push(...await readAllDirectoryEntries(reader));
-    }
-  }
-  return fileEntries;
-}
-
-// Get all the entries (files or sub-directories) in a directory by calling readEntries until it returns empty array
-async function readAllDirectoryEntries(directoryReader) {
-  let entries = [];
-  let readEntries = await readEntriesPromise(directoryReader);
-  while (readEntries.length > 0) {
-    entries.push(...readEntries);
-    readEntries = await readEntriesPromise(directoryReader);
-  }
-  return entries;
-}
-
-// Wrap readEntries in a promise to make working with readEntries easier
-async function readEntriesPromise(directoryReader) {
-  try {
-    return await new Promise((resolve, reject) => {
-      directoryReader.readEntries(resolve, reject);
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-var elDrop = document.getElementById('dropzone');
-var elItems = document.getElementById('upload_file_listing');
-
-elDrop.addEventListener('dragover', function (event) {
-    event.preventDefault();
-    elItems.innerHTML = 0;
-});
-
-elDrop.addEventListener('drop', async function (event) {
-    event.preventDefault();
-    let items = await getAllFileEntries(event.dataTransfer.items);
-    elItems.innerHTML = items.length;
-});
 
 // Image Dropdown Selection for Provider Selection
 $(document).ready(function() {
@@ -1144,6 +1091,7 @@ showStepURLhash: false,
 });
 </script>
 
+<!--
 <script>
 $(function() {
     $(".preload").fadeOut(1500, function() {
@@ -1152,7 +1100,26 @@ $(function() {
 });
 
 </script>
+-->
 
+<script type="text/javascript">
+    $(document).on('submit','#todo-form',function(e)
+                   {
+      console.log('hello');
+      e.preventDefault();
+      $.ajax({
+        type:'POST',
+        url:'',
+        data:{
+          todo:$("#todo").val()
+        },
+        success:function()
+        {
+          alert('saved');
+        }
+      })
+    });
+  </script>
 
 
 {% endblock content %}

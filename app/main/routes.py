@@ -1,4 +1,6 @@
-from flask import session, redirect, url_for, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, abort, \
+    send_from_directory
+from werkzeug.utils import secure_filename
 from . import main
 from .forms import LoginForm
 from flask import Blueprint
@@ -38,6 +40,17 @@ DROPZONE_UPLOAD_MULTIPLE=True
 DROPZONE_INVALID_FILE_TYPE="Invalid Type"
 DROPZONE_REDIRECT_VIEW='uploadcomplete'  # set redirect view
     
+### Additions 11/03/21    
+       
+UPLOAD_PATH = 'C:/uploads' 
+
+   
+    
+    
+    
+    
+    
+### End Additions 11/03/21    
 @main.route('/')
 def home():
     return render_template('page-login.html')
@@ -81,21 +94,41 @@ def docs():
     return render_template('docs.html')  
 
 # Render eob-835-home.html 
-@main.route('/eob-835-home.html',methods=["POST","GET"])
 
-def eob835home():
-    
-    
-    
-    
-    return render_template('eob-835-home.html')
-  
-    
+@main.route('/eob-835-home.html', methods=['GET','POST'])
+def index():
+    files = os.listdir(UPLOAD_PATH)
+    return render_template('eob-835-home.html',files=files)
+
+@main.route('/eob-835-home.html', methods=['GET','POST'])
+def upload_files():
+    if request.method == "POST":
+        todo = request.form.get("todo")
+        print(todo)
+        uploaded_file = request.files['file']
+        filename = secure_filename(uploaded_file.filename)
+        if filename != '':
+            file_ext = os.path.splitext(filename)[1]
+            uploaded_file.save(os.path.join(UPLOAD_PATH, filename))
+    return render_template('eob-835-home.html',  filename=filename)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
-    
-
-
 # Render form-components.html 
 @main.route('/form-components.html')
 def formcomponents():
