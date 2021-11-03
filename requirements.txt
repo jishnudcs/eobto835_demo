@@ -2,7 +2,6 @@ Click==7.0
 dnspython==1.16.0
 eventlet==0.25.1
 Flask==1.1.1
-Flask-SocketIO==4.2.1
 flask-wtf
 pandas
 itsdangerous==1.1.0
