@@ -64,7 +64,7 @@
 	  
     </aside>
 
-<main id="dmsapp" class="app-content"> <!-- add 'content' class for fadein -->
+<main id="dmsapp" class="app-content content"> <!-- add 'content' class for fadein -->
 
 
 
@@ -401,7 +401,7 @@
 				</div>
 								
 				
-				<div id="upload_display" style="overflow:auto; display:flex; flex-direction:column-reverse;height: 150px;max-height: 150px;">
+				<div id="upload_display" style="overflow:auto; display:flex;height: 200px;max-height: 200px;">
 				 <!-- <table>
     <tr>
         {% for col in column_names %}
@@ -486,7 +486,8 @@
 							</div>
             </div>
   
-		
+		Database Connection Test<br>
+		{{db_data}}
 		
 		
 		
@@ -538,12 +539,11 @@
                                     <div class="col-md-6"> 
 										<form id="upload-file" enctype="multipart/form-data"  method="post" >
   
-  <label>Custom file label:</label>
-  <input type="text" name="filelabel" size="12" maxlength="32" /><br />
+ 
   <label>File to stash:</label>
   <input type="file" name="file" required />
-  <input id="upload_submission" type="submit" value="Stash the file!" />
-</form>
+  
+
 
    
  
@@ -556,7 +556,7 @@
                             </div>
                             <div id="step-3" class="">
                                 <div class="row">
-                                    <div class="col-md-12"> </div>
+                                    <div class="col-md-12"> <input id="upload_submission" type="submit" value="Save and Close" /></form></div>
                                 </div>
                             </div>
                         </div>
@@ -1127,12 +1127,10 @@ $(document).ready(function (e) {
             contentType: false,
             processData: false,
             success:function(data){
-                console.log("success");
-                console.log(data);
-				alert("file processing")
+                document.getElementById('load_eob_images_button').disabled = false;
 				$('#exampleModal').modal('hide');
 				$('#upload_display').text(data);
-				load_835_images();
+				
             },
             error: function(data){
                 console.log("error");

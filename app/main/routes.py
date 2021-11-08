@@ -4,7 +4,7 @@ from werkzeug.utils import secure_filename
 from . import main
 
 from flask import Blueprint
-#import pyodbc
+import pyodbc
 import re
 import os
 import json
@@ -223,8 +223,14 @@ def docs():
 @main.route('/eob-835-home.html')
 def index():
     
+    conn = pyodbc.connect(Driver='{ODBC Driver 17 for SQL Server}',server='denialmanager.database.windows.net', user='denialmanageradmin', password='Iogear1234', database='eobto835')
+    cur = conn.cursor()
+    cur.execute("SELECT DISTINCT COUNT(EOB_ID) FROM EOB_835_ENVELOPE_BI")
+    db_data = cur.fetchall()    
+    cur.close()
     
-    return render_template('eob-835-home.html', row_data="", column_names="", df="")
+    
+    return render_template('eob-835-home.html', row_data="", column_names="", df="", db_data=db_data)
 
 @main.route('/upload-files', methods=['GET','POST'])
 def upload_files():
@@ -243,8 +249,12 @@ def upload_files():
        result = getziplisting(path)
         
        print(result)
+       
+       
+       
+       
       
-       return jsonify(result) 
+       return result 
    
 
     
