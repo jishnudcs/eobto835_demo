@@ -1130,6 +1130,7 @@ $(document).ready(function (e) {
                 console.log("success");
                 console.log(data);
 				alert("file processing")
+				$('#exampleModal').modal('hide');
 				$('#upload_display').text(data);
 				load_835_images();
             },
