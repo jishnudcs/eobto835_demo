@@ -254,7 +254,7 @@ def upload_files():
        
        
       
-       return result 
+       return jsonify(result) 
    
 
     

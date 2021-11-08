@@ -155,8 +155,24 @@
 			</div>
 			 <div class="tab-pane fade" id="eob_835_data_correction">
 				<div class="tile mb-4" style="border: 1px solid #999;padding: 10px;background-color: #fff;">
-			      
-				  <iframe src="https://nimbuseob.azurewebsites.net/dataentry.aspx" style="min-height:700px;width:100%;border: none;"></iframe>
+			      <script language="JavaScript">
+<!--
+function autoResize(id){
+    var newheight;
+    var newwidth;
+
+    if(document.getElementById){
+        newheight=document.getElementById(id).contentWindow.document .body.scrollHeight;
+        newwidth=document.getElementById(id).contentWindow.document .body.scrollWidth;
+    }
+
+    document.getElementById(id).height= (newheight) + "px";
+    document.getElementById(id).width= (newwidth) + "px";
+}
+//-->
+</script>
+
+				  <iframe src="https://nimbuseob.azurewebsites.net/dataentry.aspx" width="1140px" height="550px"></iframe>
 				  
 				  
 				  
@@ -402,19 +418,7 @@
 								
 				
 				<div id="upload_display" style="overflow:auto; display:flex;height: 200px;max-height: 200px;">
-				 <!-- <table>
-    <tr>
-        {% for col in column_names %}
-        <th><pre>{{col}}</pre></th>
-        {% endfor %}
-    </tr>
-    {% for row in row_data %}
-    <tr>
-       <td><pre>{{row_data|tojson}}</pre></td>
-    </tr>
-    {% endfor %}
-
-</table> -->
+				
 			
 
 					
@@ -1127,10 +1131,13 @@ $(document).ready(function (e) {
             contentType: false,
             processData: false,
             success:function(data){
-                document.getElementById('load_eob_images_button').disabled = false;
-				$('#exampleModal').modal('hide');
-				$('#upload_display').text(data);
+                console.log("file load successful");
+                console.log(data);
 				
+				$('#exampleModal').modal('hide');
+			
+				$('#upload_display').text(result);
+				load_835_images();
             },
             error: function(data){
                 console.log("error");

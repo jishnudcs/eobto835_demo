@@ -13,3 +13,4 @@ six
 Werkzeug
 WTForms
 pyodbc
+json2html
