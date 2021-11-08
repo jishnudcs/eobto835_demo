@@ -25,8 +25,8 @@
    {% endblock head %}
   </head>
   <body class="app sidebar-mini sidenav-toggled">
-  <!-- <div class="preload"><img src="https://cutewallpaper.org/21/loading-gif-transparent-background/Tag-For-Loading-Bar-Gif-Transparent-Loading-Gif-.gif" width="96px" height="96px">
-</div> -->
+  <div class="preload"><img src="https://cutewallpaper.org/21/loading-gif-transparent-background/Tag-For-Loading-Bar-Gif-Transparent-Loading-Gif-.gif" width="96px" height="96px">
+</div> 
    {% block body %}
    <!-- Navbar-->
     <header class="app-header"><a class="app-header__logo" href="home.html"><img src="static/images/dchlogo.png" style="width:auto;height:45px;"></a>
@@ -61,63 +61,7 @@
     
 
     {% block content %}
-    <main class="app-content">
-      <div class="app-title">
-        <div>
-          <h1><i class="fa fa-dashboard"></i> CTRL_WatchDog Test</h1>
-          <p>Monitor path for incoming or deleted files</p>
-        </div>
-        <ul class="app-breadcrumb breadcrumb">
-          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-          <li class="breadcrumb-item"><a href="#">CTRL_WatchDog</a></li>
-        </ul>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="tile" style="overflow-y:scroll;height 100px;">
-            <div class="tile-body">
-            <div>
-			          <p class="app-sidebar__user-designation"><p>Server IP: <b>10.100.1.119</b></p></p>
-			          <p class="app-sidebar__user-designation"><p>Your IP: <b>10.100.1.115</b></p></p>
-			          <p class="app-sidebar__user-designation"><p>Avg Latency: <b><span id="ping-pong"></span>ms</b></p></p>
-        </div>
-            	  <!--    <h2>Send:</h2>
-				    <form id="emit" method="POST" action='#'>
-				        <input type="text" name="emit_data" id="emit_data" placeholder="Message">
-				        <input type="submit" value="Echo">
-				    </form>
-				    <form id="broadcast" method="POST" action='#'>
-				        <input type="text" name="broadcast_data" id="broadcast_data" placeholder="Message">
-				        <input type="submit" value="Broadcast">
-				    </form>
-				    <form id="join" method="POST" action='#'>
-				        <input type="text" name="join_room" id="join_room" placeholder="Room Name">
-				        <input type="submit" value="Join Room">
-				    </form>
-				    <form id="leave" method="POST" action='#'>
-				        <input type="text" name="leave_room" id="leave_room" placeholder="Room Name">
-				        <input type="submit" value="Leave Room">
-				    </form>
-				    <form id="send_room" method="POST" action='#'>
-				        <input type="text" name="room_name" id="room_name" placeholder="Room Name">
-				        <input type="text" name="room_data" id="room_data" placeholder="Message">
-				        <input type="submit" value="Send to Room">
-				    </form>
-				    <form id="close" method="POST" action="#">
-				        <input type="text" name="close_room" id="close_room" placeholder="Room Name">
-				        <input type="submit" value="Close Room">
-				    </form>
-				    <form id="disconnect" method="POST" action="#">
-				        <input type="submit" value="Disconnect">
-				    </form> -->
-				    <h4>Server Messages Received:</h4>
-    				<div id="log"></div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
+    
     {% endblock content %}
 
     {% block javascripts %}

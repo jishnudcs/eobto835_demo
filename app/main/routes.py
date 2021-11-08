@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, abort, \
+from flask import Flask, render_template, request, jsonify, make_response, redirect, url_for, abort, \
     send_from_directory
 from werkzeug.utils import secure_filename
 from . import main
@@ -7,10 +7,11 @@ from flask import Blueprint
 #import pyodbc
 import re
 import os
-
+import json
 import pickle
 import pandas as pd
 from sys import argv
+import ast
 
 try:
     from configparser import ConfigParser
@@ -41,10 +42,133 @@ DROPZONE_INVALID_FILE_TYPE="Invalid Type"
 DROPZONE_REDIRECT_VIEW='uploadcomplete'  # set redirect view
     
 ### Additions 11/03/21    
+
+
+if not os.path.isdir("uploads"):  # just for this example
+    os.makedirs("uploads")
+
+
        
-##UPLOAD_PATH = 'C:/uploads' 
+UPLOAD_PATH = 'C:/uploads' 
 
    
+    
+#--------------------------------------------------------------------------
+#--- Takes the given filename and returns a list of dictionaries, in JSON
+#--- format.
+#---
+#--- Each dictionary has the keys "fullname", "name", "path", "type", and
+#--- "size". "type" is the file extension, lowercase, with no dot. (For
+#--- example, "png".) If "name" is empty, entry is a directory.
+#---
+#--- The filetypes parameter is for specifying a list of acceptable
+#--- extensions. Files not having these extensions will be ignored.
+#--- This can be either a list like ["jpg","png","gif"] or a
+#--- comma-delimited string like "jpg,png,gif". Wildcards are NOT supported.
+
+#--- Simple sample:
+#--- print( getfilelisting("myfile.zip") )
+
+def getziplisting(filename, filetypes=None):
+
+    import json
+    import os
+    import zipfile
+    
+    result = []
+    if type(filetypes) is str:
+        filetypes = filetypes.split(",")
+    
+    with zipfile.ZipFile(filename) as zip:
+    
+        for i in zip.filelist:
+
+            isok = False
+            newentry = {}
+            
+            newentry["fullname"] = i.filename
+            newentry["name"] = os.path.basename ( i.filename )
+            newentry["path"] = os.path.dirname ( i.filename )
+            newentry["type"] = os.path.splitext( i.filename )[1].lower()
+            newentry["type"] = newentry["type"].replace(".", "")
+            newentry["size"] = i.file_size
+
+            if filetypes is None:
+                isok = True
+            else:
+                if newentry["type"] in filetypes:
+                    isok = True
+                    
+            #--- If the file's ok to add to the return list, do so.
+            if isok==True: result.append( newentry )
+            
+    #--- Turn the result
+    result = json.dumps(result, indent=4)
+
+    return result
+#--------------------------------------------------------------------------
+    
+
+#--------------------------------------------------------------------------
+#--- Unzips a zip file to a given folder.
+#---
+#--- The filetypes parameter is for specifying a list of acceptable
+#--- extensions. Files not having these extensions will be ignored.
+#--- This can be either a list like ["jpg","png","gif"] or a
+#--- comma-delimited string like "jpg,png,gif". Wildcards are NOT supported.
+#---
+#--- Subfolders will be created automatically as needed, depending on zip
+#--- contents.
+#---
+#--- Returns a list of the unzipped files as JSON.
+
+def unzipfile(filename, unzipto=".", filetypes=None):
+
+    import json
+    import os
+    import zipfile
+    
+    result = []
+    
+    if type(filetypes) is str:
+        filetypes = filetypes.split(",")
+
+    with zipfile.ZipFile(filename) as zip:
+
+        for file in zip.filelist:
+            isok = False
+            newtype = os.path.splitext( file.filename )[1].lower()
+            newtype = newtype.replace(".", "")
+            
+            #--- If filetypes is None, don't check the file extension.
+            if filetypes is None:
+                isok = True
+            else:
+                #--- filetypes is not None, check extension
+                if newtype in filetypes:
+                    isok = True
+
+            #--- If the file's ok to extract, do so.
+            if isok==True:
+                zip.extract(file, unzipto)
+                result.append(file.filename)
+            
+    result = json.dumps(result, indent=4)
+            
+    return result
+            
+#--------------------------------------------------------------------------
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -95,31 +219,35 @@ def docs():
 
 # Render eob-835-home.html 
 
-@main.route('/eob-835-home.html', methods=['GET','POST'])
+@main.route('/eob-835-home.html')
 def index():
-##    files = os.listdir(UPLOAD_PATH)
-    return render_template('eob-835-home.html')
+    
+    
+    return render_template('eob-835-home.html', row_data="", column_names="", df="")
 
-##@main.route('/eob-835-home.html', methods=['GET','POST'])
-##def upload_files():
-##    if request.method == "POST":
-##        todo = request.form.get("todo")
-##        print(todo)
-##        uploaded_file = request.files['file']
-##        filename = secure_filename(uploaded_file.filename)
-##        if filename != '':
-##            file_ext = os.path.splitext(filename)[1]
-##            uploaded_file.save(os.path.join(UPLOAD_PATH, filename))
-##    return render_template('eob-835-home.html',  filename=filename)
+@main.route('/upload-files', methods=['GET','POST'])
+def upload_files():
+   
+    if request.method == 'POST':
+       name = request.form.get('fileinfo')
+       
+       
+       file = request.files['file']
+       fname = secure_filename(file.filename)
+       file.save('uploads/' + fname)
+       path = 'uploads/' + fname
+        # do the processing here and save the new file in uploads/
+       #result = unzipfile(path,'processing')
+               
+       result = getziplisting(path)
+        
+       print(result)
+      
+       return jsonify(result) 
+   
 
-
-
-
-
-
-
-
-
+    
+    
 
 
 

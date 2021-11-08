@@ -12,57 +12,47 @@
   </head>
   <body>
 
-    <section class="login-content" style="background: url(static/images/login-page-background.jpg) no-repeat;">
-      <div class="logo" style="width: 100%;height: 150px;position: absolute; top: 25%;left: 15%;">
-       <h1>EOB-835  <b>C</b>onverter Demo</h1><br>
-	
-	   
-		
-        
-		
-		
-      </div>
-	  <p style="position: absolute; top: 23%; left: 15%;"><iframe width="560" height="315" src="https://www.youtube.com/embed/oMhEPG6nOX0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
-      <div class="login-box">
-        <form class="login-form" action="eob-835-home.html">
-          <h3 class="login-head">EOB-835 Login</h3>
-          <div class="form-group">
-            <label class="control-label">USER ID</label>
-            <input class="form-control" type="text" placeholder="User ID" autofocus>
-          </div>
-          <div class="form-group">
-            <label class="control-label">PASSWORD</label>
-            <input class="form-control" type="password" placeholder="Password">
-          </div>
-          <div class="form-group">
-            <div class="utility">
-              <div class="animated-checkbox">
-                <label>
-                  <input type="checkbox"><span class="label-text">Stay Signed in</span>
-                </label>
-              </div>
-              <p class="semibold-text mb-2"><a href="#" data-toggle="flip">Forgot Password ?</a></p>
+ <div class="container-fluid">
+    <div class="row no-gutter">
+        <!-- The image half -->
+        <div class="col-md-6 d-none d-md-flex bg-image"></div>
+
+
+        <!-- The content half -->
+        <div class="col-md-6 bg-light">
+            <div class="login d-flex align-items-center py-5">
+
+                <!-- Demo content-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 col-xl-7 mx-auto">
+                            <h3 class="display-4"><img src="static/images/ruzivo_logo.png" width="251px" height="155px"></h3>
+                            <p class="text-muted mb-4" style="color: #0078bf;"><h4>EOB to EDI 835 Product Demonstration</h4></p>
+							
+                            <form action="eob-835-home.html">
+								<div class="form-group mb-3">
+								Please enter your credentials to continue:
+								</div>
+                                <div class="form-group mb-3">
+                                    <input id="inputUID" type="text" placeholder="User ID" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input id="inputPassword" type="password" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                </div>
+                                
+                                <button type="submit" class="btn btn-info btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign in</button>
+                               
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- End -->
+
             </div>
-          </div>
-          <div class="form-group btn-container">
-            <button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>SIGN IN</button>
-          </div>
-        </form>
-        <form class="forget-form" action="eob-835-home.html">
-          <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Forgot Password ?</h3>
-          <div class="form-group">
-            <label class="control-label">EMAIL</label>
-            <input class="form-control" type="text" placeholder="Email">
-          </div>
-          <div class="form-group btn-container">
-            <button class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>RESET</button>
-          </div>
-          <div class="form-group mt-3">
-            <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Back to Login</a></p>
-          </div>
-        </form>
-      </div>
-    </section>
+        </div><!-- End -->
+
+    </div>
+</div>
+
     <!-- Essential javascripts for application to work-->
     <script src="static/js/jquery-3.3.1.min.js"></script>
     <script src="static/js/popper.min.js"></script>

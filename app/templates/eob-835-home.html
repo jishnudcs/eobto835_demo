@@ -262,13 +262,7 @@
 									
 									<div class="card-title"><i class="fa fa-info-circle"></i> Welcome!</div>
 			 </div>	
-				<div class="card-body" style="/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#e5e5e5+0,ffffff+100 */
-background: rgb(229,229,229); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(229,229,229,1) 0%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  rgba(229,229,229,1) 0%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  rgba(229,229,229,1) 0%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
-" >	
+				<div class="card-body" style="background: none;" >	
                     <legend class="lead" style="background: #CEDEF0;border: 1px solid #bbb;border-radius: 8px;">
                         <b>Simplify EOB to EDI 835 Conversion with the Ruzivo&#8482; engine</b>
                     </legend>
@@ -276,15 +270,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', end
                     <p style="">
 					this section needs typography changes
                         <br>Welcome to the Data-Core Healthcare Ruzivo Demonstration. We are excited to show you how Ruzivo can help you optimize your revenue cycle management by leveraging the power of AI.
-                    </p>
+                    </p><br><center><button type="button" class="btn-lg btn-info" data-toggle="modal" data-target="#exampleModal"> Start Ruzivo </button> </center><br>
                 Before using Ruzivo, we would love to share with you some helpful information: <br><br>
 				
 				
 			
-			<center><button id="product-tour-trigger" class="btn btn-outline-info" type="button">The Power behind Ruzivo</button></center><br>
-			<center><button id="product-tour-trigger" class="btn btn-outline-info" type="button">Common Medical Billing Terminology</button></center><br>
-			<center><button id="product-tour-trigger" class="btn btn-outline-info" type="button">What is AI/Machine Learning?</button></center><br>
-			 <center><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal"> Get Started </button> </center><br>
+			<center><button id="product-tour-trigger" class="btn-sm btn-outline-info" type="button">The Power behind Ruzivo</button></center><br>
+			<center><button id="product-tour-trigger" class="btn-sm btn-outline-info" type="button">Common Medical Billing Terminology</button></center><br>
+			<center><button id="product-tour-trigger" class="btn-sm btn-outline-info" type="button">What is AI/Machine Learning?</button></center><br>
+			 
 			</div>
 			</div>
 			</div>
@@ -406,22 +400,24 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', end
 </div>
 				</div>
 								
-				<table class="table table-sm">
-<thead>
-<tr>
-<th>Filename</th>
-<th>Type</th>
-<th>Size</th>
-<th>Status</th>
-<th>Action</th>
-</tr>
-</thead>
+				
+				<div id="upload_display" style="overflow:auto; display:flex; flex-direction:column-reverse;height: 150px;max-height: 150px;">
+				 <!-- <table>
+    <tr>
+        {% for col in column_names %}
+        <th><pre>{{col}}</pre></th>
+        {% endfor %}
+    </tr>
+    {% for row in row_data %}
+    <tr>
+       <td><pre>{{row_data|tojson}}</pre></td>
+    </tr>
+    {% endfor %}
 
-</table>
-				<div style="overflow:auto; display:flex; flex-direction:column-reverse;height: 150px;max-height: 150px;">
-				<table id="fileLabel" class="table table-sm">
+</table> -->
 			
-				</table>
+
+					
 				</div>
 				
 				
@@ -491,6 +487,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', end
             </div>
   
 		
+		
+		
+		
 		<div class="container" style="position: absolute; top: 0px;left: 0px;">
     <div class="row d-flex justify-content-center mt-200"></div> <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -535,13 +534,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', end
                             </div>
                             <div id="step-2">
                                 <div class="row">
-                                    <div class="col-md-6"> Please select input source </div>
-                                    <div class="col-md-6">  <h1>File Upload</h1>
-    <!-- <form id="todo-form" method="POST" action="" enctype="multipart/form-data">
-      <p><input type="file" name="todo" id="todo"></p> -->
-      
+                                    <div class="col-md-6"><div id="upload_filelist"></div></div>
+                                    <div class="col-md-6"> 
+										<form id="upload-file" enctype="multipart/form-data"  method="post" >
+  
+  <label>Custom file label:</label>
+  <input type="text" name="filelabel" size="12" maxlength="32" /><br />
+  <label>File to stash:</label>
+  <input type="file" name="file" required />
+  <input id="upload_submission" type="submit" value="Stash the file!" />
+</form>
+
    
-    <hr>
+ 
  </div>
                                 </div>
                                 <div class="row mt-3">
@@ -551,7 +556,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', end
                             </div>
                             <div id="step-3" class="">
                                 <div class="row">
-                                    <div class="col-md-12"><!-- <p><input type="submit" value="Submit"></p>  </form> --></div>
+                                    <div class="col-md-12"> </div>
                                 </div>
                             </div>
                         </div>
@@ -1097,7 +1102,7 @@ showStepURLhash: false,
 });
 </script>
 
-<!--
+
 <script>
 $(function() {
     $(".preload").fadeOut(1500, function() {
@@ -1106,28 +1111,41 @@ $(function() {
 });
 
 </script>
--->
 
-<!--
-<script type="text/javascript">
-    $(document).on('submit','#todo-form',function(e)
-                   {
-      console.log('hello');
-      e.preventDefault();
-      $.ajax({
-        type:'POST',
-        url:'',
-        data:{
-          todo:$("#todo").val()
-        },
-        success:function()
-        {
-          alert('saved');
-        }
-      })
+
+<script>
+$(document).ready(function (e) {
+    $('#upload-file').on('submit',(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+
+        $.ajax({
+            type:'POST',
+            url: '/upload-files',
+            data:formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success:function(data){
+                console.log("success");
+                console.log(data);
+				alert("file processing")
+				$('#upload_display').text(data);
+				load_835_images();
+            },
+            error: function(data){
+                console.log("error");
+                console.log(data);
+            }
+        });
+    }));
+
+    $("#upload_submission").on("change", function() {
+        $("#upload-file").submit();
     });
-  </script>
--->
+});
+</script>
+
 
 {% endblock content %}
 
