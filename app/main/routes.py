@@ -12,6 +12,7 @@ import pickle
 import pandas as pd
 from sys import argv
 import ast
+from flask_wtf import FlaskForm 
 
 try:
     from configparser import ConfigParser
