@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify, make_response, redir
     send_from_directory
 from werkzeug.utils import secure_filename
 from . import main
-from .forms import LoginForm
+
 from flask import Blueprint
 #import pyodbc
 import re
