@@ -1,5 +1,4 @@
-from flask import Flask, render_template, request, jsonify, make_response, redirect, url_for, abort, \
-    send_from_directory
+from flask import Flask, render_template, escape, request, jsonify, make_response, redirect, url_for, abort,send_from_directory, Markup
 from werkzeug.utils import secure_filename
 from . import main
 
@@ -55,8 +54,7 @@ UPLOAD_PATH = 'C:/uploads'
    
     
 #--------------------------------------------------------------------------
-#--- Takes the given filename and returns a list of dictionaries, in JSON
-#--- format.
+#--- Takes the given filename and returns a list of dictionaries.
 #---
 #--- Each dictionary has the keys "fullname", "name", "path", "type", and
 #--- "size". "type" is the file extension, lowercase, with no dot. (For
@@ -66,19 +64,24 @@ UPLOAD_PATH = 'C:/uploads'
 #--- extensions. Files not having these extensions will be ignored.
 #--- This can be either a list like ["jpg","png","gif"] or a
 #--- comma-delimited string like "jpg,png,gif". Wildcards are NOT supported.
-
+#---
 #--- Simple sample:
 #--- print( getfilelisting("myfile.zip") )
+#---
+#--- Version 1.1.1
 
 def getziplisting(filename, filetypes=None):
 
-    import json
     import os
     import zipfile
     
     result = []
     if type(filetypes) is str:
         filetypes = filetypes.split(",")
+        
+    if type(filetypes) is list:
+        for i in range(0, len(filetypes) ):
+            filetypes[i] = filetypes[i].lower().strip()
     
     with zipfile.ZipFile(filename) as zip:
     
@@ -102,9 +105,6 @@ def getziplisting(filename, filetypes=None):
                     
             #--- If the file's ok to add to the return list, do so.
             if isok==True: result.append( newentry )
-            
-    #--- Turn the result
-    result = json.dumps(result, indent=4)
 
     return result
 #--------------------------------------------------------------------------
@@ -121,18 +121,23 @@ def getziplisting(filename, filetypes=None):
 #--- Subfolders will be created automatically as needed, depending on zip
 #--- contents.
 #---
-#--- Returns a list of the unzipped files as JSON.
+#--- Returns a list of the newly unzipped files.
+#--- 
+#--- Version 1.1.1
 
 def unzipfile(filename, unzipto=".", filetypes=None):
 
-    import json
     import os
     import zipfile
     
     result = []
-    
+   
     if type(filetypes) is str:
         filetypes = filetypes.split(",")
+
+    if type(filetypes) is list:
+        for i in range(0, len(filetypes) ):
+            filetypes[i] = filetypes[i].lower().strip()
 
     with zipfile.ZipFile(filename) as zip:
 
@@ -154,12 +159,70 @@ def unzipfile(filename, unzipto=".", filetypes=None):
                 zip.extract(file, unzipto)
                 result.append(file.filename)
             
-    result = json.dumps(result, indent=4)
-            
     return result
-            
 #--------------------------------------------------------------------------
+
+
+#--------------------------------------------------------------------------
+#---
+#--- Returns the result from getziplisting as a string with an HTML
+#--- table
+
+def ziplisting_to_table(ziplisting):
+
+    filecount = 0
+    dircount  = 0
+    result = ""
     
+    result="<TABLE>\n"
+    
+    for thisdict in ziplisting:
+        result = result + "    <TR>\n"
+        for thiskey in thisdict:
+            if thiskey=="name":
+                if thisdict[thiskey]=="":
+                    dircount = dircount + 1
+                else:
+                    filecount = filecount + 1
+            #--- fullname, name, path, type, size
+            if thiskey in ["name", "type", "size"]:
+                result = result + "        <TD>{}</TD>\n".format( thisdict[thiskey] )
+            #result = result + "        <TD>{}</TD>\n".format( thisdict[thiskey] )
+        result = result + "    </TR>\n"
+        
+    result = result + "</TABLE>"
+    result = "Files: {}<BR>\nFolders: {}<BR>\n".format(filecount, dircount) + result
+    
+    return result
+#--------------------------------------------------------------------------
+
+
+#--------------------------------------------------------------------------
+#---
+#--- Returns the result from unzipfile as a string with an HTML
+#--- table
+
+def unzipfile_to_table(unziplist):
+
+    filecount = 0
+    dircount  = 0
+    result = ""
+    
+    result="<TABLE>\n"
+    
+    for thisfile in unziplist:
+        if thisfile[-1:]=="/":
+            dircount = dircount +1
+        else:
+            filecount = filecount + 1
+
+        result = result + "    <TR><TD>{}</TD></TR>\n".format(thisfile)
+        
+    result = result + "</TABLE>"
+    result = "Files: {}<BR>\nFolders: {}<BR>\n".format(filecount, dircount) + result
+    
+    return result
+#--------------------------------------------------------------------------
     
     
     
@@ -223,14 +286,15 @@ def docs():
 @main.route('/eob-835-home.html')
 def index():
     
-    conn = pyodbc.connect(Driver='{ODBC Driver 17 for SQL Server}',server='denialmanager.database.windows.net', user='denialmanageradmin', password='Iogear1234', database='eobto835')
-    cur = conn.cursor()
-    cur.execute("SELECT DISTINCT COUNT(EOB_ID) FROM EOB_835_ENVELOPE_BI")
-    db_data = cur.fetchall()    
-    cur.close()
+    eob_db_data = eob_db_retrieve()
+    banding_db_data = banding_db_retrieve()
+    ev_db_data = ev_db_retrieve()
+    generate_db_data = generate_db_retrieve()
     
     
-    return render_template('eob-835-home.html', row_data="", column_names="", df="", db_data=db_data)
+    
+    
+    return render_template('eob-835-home.html', row_data="", column_names="", df="", eob_db_data=eob_db_data[0],banding_db_data=banding_db_data[0],ev_db_data=ev_db_data[0],generate_db_data=generate_db_data[0])
 
 @main.route('/upload-files', methods=['GET','POST'])
 def upload_files():
@@ -245,23 +309,54 @@ def upload_files():
        path = 'uploads/' + fname
         # do the processing here and save the new file in uploads/
        #result = unzipfile(path,'processing')
-               
+       print (path)        
        result = getziplisting(path)
+       result = ziplisting_to_table(result) 
         
-       print(result)
-       
-       
-       
-       
-      
-       return jsonify(result) 
+       #print(result)
+            
+       return result 
    
 
+@main.route('/eob_db_retrieve', methods=['GET','POST'])
+def eob_db_retrieve():
+   
+    conn = pyodbc.connect(Driver='{ODBC Driver 17 for SQL Server}',server='denialmanager.database.windows.net', user='denialmanageradmin', password='Iogear1234', database='eobto835')
+    cur = conn.cursor()
+    cur.execute("SELECT DISTINCT COUNT(EOB_ID) FROM EOB_835_ENVELOPE_BI")
+    eob_db_data = cur.fetchall()    
+    cur.close()
+    return eob_db_data 
     
-    
+@main.route('/banding_db_retrieve', methods=['GET','POST'])
+def banding_db_retrieve():
+   
+    conn = pyodbc.connect(Driver='{ODBC Driver 17 for SQL Server}',server='denialmanager.database.windows.net', user='denialmanageradmin', password='Iogear1234', database='eobto835')
+    cur = conn.cursor()
+    cur.execute("SELECT COUNT(DISTINCT CLM_CLMCTRLNO) FROM EOB_835_CLAIM WHERE CLM_ENVELOPEID IN (SELECT EOB_ID FROM EOB_835_ENVELOPE_BI) AND CLM_CLMCTRLNO <> ''")
+    banding_db_data = cur.fetchall()    
+    cur.close()
+    return banding_db_data     
 
+@main.route('/ev_db_retrieve', methods=['GET','POST'])
+def ev_db_retrieve():
+   
+    conn = pyodbc.connect(Driver='{ODBC Driver 17 for SQL Server}',server='denialmanager.database.windows.net', user='denialmanageradmin', password='Iogear1234', database='eobto835')
+    cur = conn.cursor()
+    cur.execute("SELECT DISTINCT COUNT(EOB_ID) FROM EOB_835_ENVELOPE_BI WHERE EOB_STATUS = 'Automated'")
+    ev_db_data = cur.fetchall()    
+    cur.close()
+    return ev_db_data    
 
-
+@main.route('/generate_db_retrieve', methods=['GET','POST'])
+def generate_db_retrieve():
+   
+    conn = pyodbc.connect(Driver='{ODBC Driver 17 for SQL Server}',server='denialmanager.database.windows.net', user='denialmanageradmin', password='Iogear1234', database='eobto835')
+    cur = conn.cursor()
+    cur.execute("SELECT DISTINCT COUNT(EOB_ID) FROM EOB_835_ENVELOPE_BI WHERE EOB_STATUS = 'Automated'")
+    generate_db_data = cur.fetchall()    
+    cur.close()
+    return generate_db_data    
 
 
 

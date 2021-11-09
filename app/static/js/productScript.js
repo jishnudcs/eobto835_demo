@@ -1,6 +1,12 @@
+ var today = new Date();
+ var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+ document.getElementById('ruzivo_main_button').disabled = false;
+ 
+ 
  function eob835_animation(){
 		// 1st Animation
 	   setTimeout(function(){step_sorting();}, 2500);
+	   
 	   setTimeout(function(){identify_eobs();}, 2500);
 	   setTimeout(function(){eob835_progressbar_sort();}, 3500);
 	   setTimeout(function(){eob835_checkmark_sort();}, 20000);
@@ -9,6 +15,7 @@
 	   setTimeout(function(){overall_change_to_25();}, 20100);
 	   // 2nd Animation
 	   setTimeout(function(){step_banding();}, 25500);
+	   
 	   setTimeout(function(){band_eobs();}, 25500);
 	   setTimeout(function(){eob835_progressbar_banding();}, 26500);
 	   setTimeout(function(){eob835_checkmark_banding();}, 43000);
@@ -42,17 +49,30 @@
 
 
 		function load_835_images() {
-
-		var today = new Date();
-		var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-
+		
+		
 		document.getElementById("step_load").className = "process_step_1 active";
-		document.getElementById('convert_eob_images_button').disabled = false;
+		
+		document.getElementById('load_eob_images_button').disabled = false;
+		document.getElementById('convert_eob_images_button').disabled = true;
 		document.getElementById('cancel_eob_images_button').disabled = false;
+		
+		
 				
 		var generateresult = document.getElementById("fileliststatus");
-		setTimeout(function(){generateresult.innerHTML += '<li class="activity-list"><div class="detail-info"><p class="date">Load Images &nbsp;&nbsp;&nbsp;(' + time + ')</p><p class="info">You have successfully uploaded 1 envelope with 200 images.</p></div></li>';}, 100);
+		setTimeout(function(){generateresult.innerHTML += '<li class="activity-list"><div class="detail-info"><p class="date">Load Images &nbsp;&nbsp;&nbsp;(' + time + ')</p><p class="info">Your images have been successfully processed.</p></div></li>';}, 100);
 		}
+		
+		function confirm_selection(){
+			   
+		document.getElementById('load_eob_images_button').disabled = true;
+		document.getElementById('convert_eob_images_button').disabled = false;
+		document.getElementById('cancel_eob_images_button').disabled = true;
+		document.getElementById('ruzivo_main_button').disabled = true;	   
+			   	   
+		}
+		
+		
 		
 		function identify_eobs() {
 
@@ -117,23 +137,20 @@
 
 
 		function stat_sorting(){
-			   var generateresult = document.getElementById("sorting_result");
-			   setTimeout(function(){generateresult.innerHTML = '<font style="color: #0078bf;"><center>100 eobs</center></font>';}, 100);
+			   
+			   setTimeout(function(){document.getElementById('sorting_result').setAttribute('style', 'display: show');}, 100);
 		}
 		
 		function stat_banding(){
-			   var generateresult = document.getElementById("banding_result");
-			   setTimeout(function(){generateresult.innerHTML = '<font style="color: #0078bf;"><center>200 claims</center></font>';}, 100);
+			   setTimeout(function(){document.getElementById('banding_result').setAttribute('style', 'display: show');}, 100);
 		}
 		
 		function stat_ev(){
-			   var generateresult = document.getElementById("ev_result");
-			   setTimeout(function(){generateresult.innerHTML = '<font style="color: #0078bf;"><center>85 claims</center></font>';}, 100);
+			   setTimeout(function(){document.getElementById('ev_result').setAttribute('style', 'display: show');}, 100);
 		}
 		
 		function stat_generate(){
-			   var generateresult = document.getElementById("generate_result");
-			   setTimeout(function(){generateresult.innerHTML = '<font style="color: #0078bf;"><center>85 claims</center></font>';}, 100);
+			   setTimeout(function(){document.getElementById('generate_result').setAttribute('style', 'display: show');}, 100);
 		}
 
 		function step_sorting() {
@@ -401,16 +418,3 @@ function initViz() {
  
 
 }
-
-function image_load_activate_button() {
-
-		
-		document.getElementById('load_eob_images_button').disabled = false;
-		
-		
-		
-		
-		
-		}
-		
-		

@@ -153,26 +153,11 @@
 
 				</div>
 			</div>
-			 <div class="tab-pane fade" id="eob_835_data_correction">
+			 <div class="tab-pane fade" id="eob_835_data_correction" >
 				<div class="tile mb-4" style="border: 1px solid #999;padding: 10px;background-color: #fff;">
-			      <script language="JavaScript">
-<!--
-function autoResize(id){
-    var newheight;
-    var newwidth;
+			 
 
-    if(document.getElementById){
-        newheight=document.getElementById(id).contentWindow.document .body.scrollHeight;
-        newwidth=document.getElementById(id).contentWindow.document .body.scrollWidth;
-    }
-
-    document.getElementById(id).height= (newheight) + "px";
-    document.getElementById(id).width= (newwidth) + "px";
-}
-//-->
-</script>
-
-				  <iframe src="https://nimbuseob.azurewebsites.net/dataentry.aspx" width="1140px" height="550px"></iframe>
+				   <iframe id="dc_iframe" src="https://nimbuseob.azurewebsites.net/dataentry.aspx" style="min-height:700px;width:100%;border: none;" ></iframe>
 				  
 				  
 				  
@@ -282,11 +267,11 @@ function autoResize(id){
                     <legend class="lead" style="background: #CEDEF0;border: 1px solid #bbb;border-radius: 8px;">
                         <b>Simplify EOB to EDI 835 Conversion with the Ruzivo&#8482; engine</b>
                     </legend>
-					<div style="position: absolute; top: 60px; right: 40px;"><img src="static/images/ruzivo_logo.png" style="height:77px;width:125px;"></div>
+					<div style="position: absolute; top: 50px; right: 25px;"><img src="static/images/ruzivo_logo.png" style="height:77px;width:125px;"></div>
                     <p style="">
 					this section needs typography changes
                         <br>Welcome to the Data-Core Healthcare Ruzivo Demonstration. We are excited to show you how Ruzivo can help you optimize your revenue cycle management by leveraging the power of AI.
-                    </p><br><center><button type="button" class="btn-lg btn-info" data-toggle="modal" data-target="#exampleModal"> Start Ruzivo </button> </center><br>
+                    </p><br><center><button id="ruzivo_main_button" type="button" class="btn-lg btn-info" data-toggle="modal" data-target="#exampleModal" disabled> Start Ruzivo </button> </center><br>
                 Before using Ruzivo, we would love to share with you some helpful information: <br><br>
 				
 				
@@ -349,12 +334,12 @@ function autoResize(id){
 								</div>
 								<div class="card-body">
 									
-									<table class="table table-sm">
+									<table class="table table-sm" style="margin-top: -5px;">
               <thead>
                 <tr>
                   
-                  <th style="width: 40%;color: #0078bf;font-size: 16px;"><center>Process</center></th>
-                  <th style="width: 40%;background-color:#dbf0df;opacity:.9;"><center><b>Progress</b></center></th>
+                  <th style="width: 30%;color: #0078bf;font-size: 16px;"><center>Process</center></th>
+                  <th style="width: 30%;background-color:#dbf0df;opacity:.9;"><center><b>Progress</b></center></th>
                   <th style="width: 20%;background-color:#CDD9F2;opacity:.9;"><center><b>Result</b></center></th>
 				  <th style="width: 20%;background-color:#CDD9F2;opacity:.9;"><center><b>Time </b></center></th>
                  
@@ -365,30 +350,30 @@ function autoResize(id){
                   
                   <td style="color: #0078bf;"><center>EOB Identification</center></td>
                   <td style="" id="sorting_progress"><div id="sortingprogressbar"></div></td>
-                  <td style="color:#0078bf;" id="sorting_result"><center>---</center></td>
-				  <td style="color:#0078bf;" id="sorting_result"><center>{{filename}}</center></td>
+                  <td style="color:#0078bf;display: none;" id="sorting_result"><center>{{eob_db_data[0]}}</center></td>
+				  <td style="color:#0078bf;" id="sortingtimeDisplay"><center>&nbsp;</center></td>
                  
                 </tr>
                 <tr>
                   
                   <td style="color: #0078bf;"><center>Auto Banding</center></td>
                   <td style="" id="banding_progress"><div id="bandingprogressbar"></div></td>
-                  <td style="color:#0078bf;" id="banding_result"><center>---</center></td>
-                  
+                  <td style="color:#0078bf;display: none;" id="banding_result"><center>{{banding_db_data[0]}}</center></td>
+                  <td style="color:#0078bf;" id="time_banding_result"><center>&nbsp;</center></td>
                 </tr>
                 <tr>
                  
                   <td style="color: #0078bf;"><center>Extraction & Validation</center></td>
                   <td style="" id="ev_progress"><div id="evprogressbar"></div></td>
-                  <td style="color:#0078bf;" id="ev_result"><center>---</center></td>
-                  
+                  <td style="color:#0078bf;display: none;" id="ev_result"><center>{{ev_db_data[0]}}</center></td>
+                  <td style="color:#0078bf;" id="time_ev_result"><center>&nbsp;</center></td>
                 </tr>
 				<tr>
                  
                   <td style="color: #0078bf;"><center>Create 835</center></td>
                   <td style="" id="generate_progress"><div id="generateprogressbar"></div></td>
-                  <td style="color:#0078bf;" id="generate_result"><center>---</center></td>
-                  
+                  <td style="color:#0078bf;display: none;" id="generate_result"><center>{{generate_db_data[0]}}</center></td>
+                  <td style="color:#0078bf;" id="time_generate_result"><center>&nbsp;</center></td>
                 </tr>
 				
                 
@@ -426,8 +411,8 @@ function autoResize(id){
 				
 				
 				<div class="card-footer">
-				<input id="load_eob_images_button" class="btn btn-info" type="button" value="Confirm Selection" onclick="load_835_images();" disabled />
-				<div style="float: right;"><input id="convert_eob_images_button" class="btn btn-primary" type="button" value="Convert" onclick="eob835_animation();" disabled />&nbsp;<input id="cancel_eob_images_button" class="btn btn-secondary" type="button" value="Cancel" onClick="window.location.reload();" disabled /></div></div>	
+				<input id="load_eob_images_button" class="btn btn-info" type="button" value="Confirm Selection" onclick="confirm_selection();" disabled />
+				<div style="float: right;"><input id="convert_eob_images_button" class="btn btn-primary" type="button" value="Convert" data-loading-text="LOADING..." onclick="eob835_animation();" disabled />&nbsp;<input id="cancel_eob_images_button" class="btn btn-secondary" type="button" value="Cancel" onClick="window.location.reload();" disabled /></div></div>	
 			</div>
 		  </div>
   
@@ -490,8 +475,8 @@ function autoResize(id){
 							</div>
             </div>
   
-		Database Connection Test<br>
-		{{db_data}}
+		<br>
+		
 		
 		
 		
@@ -509,7 +494,7 @@ function autoResize(id){
                         <ul>
                             <li><a href="#step-1">Step 1<br /><small>Provider Selection</small></a></li>
                             <li><a href="#step-2">Step 2<br /><small>EOB Image Source</small></a></li>
-                            <li><a href="#step-3">Step 3<br /><small>Confirm details</small></a></li>
+                            <li><a href="#step-3">Step 3<br /><small>Submit for Loading</small></a></li>
                         </ul>
                         <div class="mt-4">
                             <div id="step-1">
@@ -520,7 +505,7 @@ function autoResize(id){
 							   </div>
 							   <div class="row">&nbsp;</div>
                                 <div class="row">
-                                    <div class="col-md-6"><b>Question 1 - Who is your provider? This will assist Ruzivo in optimizing your file processing.</b><br> </div>
+                                    <div class="col-md-6"><b>Please select your provider. This will assist Ruzivo in optimizing your file processing.</b><br> </div>
                                     <div class="col-md-6"> <select class="form-control" style="width: 75%;" id="image" name="image">
    <option value=""> - Select Provider - </option>
    <option value="static/images/provider_icon_1.png" >Provider 1</option>
@@ -538,15 +523,19 @@ function autoResize(id){
                                 </div>
                             </div>
                             <div id="step-2">
+								<div class="row">
+                                    <div class="col-md-6"><b>Please select your upload file.</b> (<i>*.zip allowed</i>)<br> </div>
+                                    <div class="col-md-6"><form id="upload-file" enctype="multipart/form-data"  method="post" >
+  
+ 
+  <label class="btn btn-primary">File to stash:</label>
+  <input type="file" name="file" required />
+  </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6"><div id="upload_filelist"></div></div>
                                     <div class="col-md-6"> 
-										<form id="upload-file" enctype="multipart/form-data"  method="post" >
-  
- 
-  <label>File to stash:</label>
-  <input type="file" name="file" required />
-  
+										
 
 
    
@@ -560,8 +549,10 @@ function autoResize(id){
                             </div>
                             <div id="step-3" class="">
                                 <div class="row">
-                                    <div class="col-md-12"> <input id="upload_submission" type="submit" value="Save and Close" /></form></div>
+                                    <div class="col-md-12">Thanks! We have all the information we need. When you are ready, click "Save and Close" to send your information to Ruzivo.</div>
+                                    <div class="col-md-6"><input id="upload_submission" class="btn btn-primary" type="submit" value="Save and Close" /></form> </div>
                                 </div>
+								
                             </div>
                         </div>
                     </div>
@@ -804,6 +795,8 @@ function autoResize(id){
 <!-- Product Tour-->
 <script src="static/js/vendor/tourguide/tourguide.min.js"></script>
 <script src="static/js/vendor/smartwizard/smartwizard.min.js"></script>
+<script src="static/js/jquery.stopwatch.js"></script>
+
  <!-- Data table plugin-->
     <script type="text/javascript" src="static/js/plugins/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="static/js/plugins/dataTables.bootstrap.min.js"></script>
@@ -1133,10 +1126,8 @@ $(document).ready(function (e) {
             success:function(data){
                 console.log("file load successful");
                 console.log(data);
-				
 				$('#exampleModal').modal('hide');
-			
-				$('#upload_display').text(result);
+				$('#upload_display').text(data);
 				load_835_images();
             },
             error: function(data){
@@ -1150,6 +1141,23 @@ $(document).ready(function (e) {
         $("#upload-file").submit();
     });
 });
+</script>
+<script>
+$(function() {
+  //Bootstrap Button Loading... Indicator
+      $('.convert_images_eob_button').click(function() {
+      //$('button[type="submit"].btn').click(function() {
+        var $this = $(this);
+        //$this.data("loading-text", $this.html() + " <i class='fa fa-spinner fa-spin fa-lg'></i>");
+        $this.button('loading');
+        // Then whatever you actually want to do i.e. submit form
+        // After that has finished, reset the button state using
+        setTimeout(function () {
+          $this.button('reset');
+        }, 4000);
+      });
+  });
+
 </script>
 
 
